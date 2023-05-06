@@ -20,13 +20,14 @@
         display: flex;
         flex-direction: column;
     
-        align-items: center;
+        align-items: left;
     }
+   
    
 
 </style>
 <div class="heading">
-    <div>
+    <div class="title">
         {heading}
     </div>
     <div class="image-container">

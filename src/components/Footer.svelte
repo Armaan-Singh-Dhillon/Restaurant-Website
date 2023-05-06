@@ -53,7 +53,7 @@
 <style>
 	.footer {
 		display: grid;
-		grid-template-columns: 0.1fr 0.1fr 1.6fr 0.1fr 0.1fr;
+		grid-template-columns: 0.1fr 0.1fr 2fr 0.1fr 0.1fr;
 		grid-template-rows: repeat(8, 100px);
 
 		background-repeat: no-repeat;
@@ -73,13 +73,7 @@
 		grid-area: 4/2/-1/-2;
 
 		color: white;
-		background-image: linear-gradient(
-				to right,
-				#000,
-				rgba(82, 71, 71, 0.521),
-				rgba(82, 71, 71, 0.521),
-				#000
-			),
+		background-image: radial-gradient(rgba(82, 71, 71, 0.2), #000),
 			url(../lib/images/background/background.jpg);
 
 		display: grid;

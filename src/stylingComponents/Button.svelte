@@ -7,7 +7,7 @@
         
         background-color: #dcca87;
         border: none;
-        padding: 1rem;
+        padding: 0.8rem;
         font-family: 'Cormorant Upright', serif;
         font-size: calc(0.2em + 1vw);
 

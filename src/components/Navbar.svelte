@@ -20,7 +20,7 @@
    .navbar{
     color: #dcca87;
     display: grid;
-    grid-template-columns: 0.2fr 0.4fr 1fr  0.4fr 0.2fr ;
+    grid-template-columns: 0.1fr 0.4fr 1fr  0.4fr 0.1fr ;
     gap: 2rem;
     font-size: calc(0.4em + 1vw);
     align-items: center;
@@ -37,6 +37,10 @@
     font-family: 'Cormorant Upright', serif;
     color: white;
 
+   }
+   .left h1{
+    margin: 0;
+    padding: 0;
    }
    .search{
     background: transparent;

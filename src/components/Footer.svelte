@@ -73,8 +73,7 @@
 		grid-area: 4/2/-1/-2;
 
 		color: white;
-		background-image: radial-gradient(rgba(82, 71, 71, 0.2), #000),
-			url(../lib/images/background/background.jpg);
+		
 
 		display: grid;
 		grid-template-rows: repeat(4, 1fr);

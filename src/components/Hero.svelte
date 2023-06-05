@@ -32,6 +32,7 @@
 	}
 	.intro {
 		padding: 2rem;
+
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -39,14 +40,13 @@
 	.container {
 		display: flex;
 		justify-content: space-evenly;
-
-		height: 38rem;
+		padding: 4rem 0;
 	}
 
 	.hero {
 		width: 90%;
 		color: white;
-        
+
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		gap: 2rem;
@@ -70,6 +70,7 @@
 	.image-container {
 		display: grid;
 		grid-template-columns: 15px 2fr 4fr 2fr 15px;
+		/* grid-template-rows: 20px 2fr 4fr 2fr 20px; */
 		grid-template-rows: 20px 2fr 4fr 2fr 20px;
 	}
 	.image {

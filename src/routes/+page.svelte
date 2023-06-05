@@ -12,10 +12,10 @@
 <div class="container">
 	<Navbar />
 	<div class="main">
-		<!-- <Hero /> -->
-		<Chefsword></Chefsword>
+		<Hero />
 		<Menu/>
-		<!-- <Laurel /> -->
+		<Chefsword></Chefsword>
+		<Laurel />
 		<Footer />
 	</div>
 </div>

@@ -5,10 +5,15 @@
 	import P from '../stylingComponents/P.svelte';
 	import Button from '../stylingComponents/Button.svelte';
 	import H5 from '../stylingComponents/H5.svelte';
+	import scissor from '../lib/images/logos/scissors.svg'
 </script>
 
 <div class="footer">
 	<div class="subscribe">
+		<div class="sticker">
+			<img src={scissor} alt="">
+
+		</div>
 		<div>
 			<H4 heading={'Newsletter'} />
 		</div>
@@ -51,6 +56,11 @@
 </div>
 
 <style>
+	.sticker{
+		position: absolute;
+		top: -20%;
+		left: 10%;
+	}
 	.footer {
 		display: grid;
 		grid-template-columns: 0.1fr 0.1fr 2fr 0.1fr 0.1fr;
@@ -68,6 +78,7 @@
 		flex-direction: column;
 		justify-content: space-evenly;
 		align-items: center;
+		position: relative;
 	}
 	.middle {
 		grid-area: 4/2/-1/-2;
@@ -95,5 +106,7 @@
 	}
 	input {
 		width: 100%;
+		background-color: #000;
+		border: 1px solid whitesmoke;
 	}
 </style>

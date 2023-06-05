@@ -54,6 +54,7 @@
         flex-direction: column;
 		align-items: center;
 		color: white;
+		padding: 10rem 0;
 	}
 	.menu {
 		width: 100%;

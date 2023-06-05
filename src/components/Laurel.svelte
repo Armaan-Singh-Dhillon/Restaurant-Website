@@ -70,7 +70,7 @@
 		gap: 8rem;
 	}
 	.laurel {
-		padding: 2rem;
+		padding: 8rem 2rem;
 	}
 	.award {
 		display: grid;

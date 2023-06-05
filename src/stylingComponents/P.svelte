@@ -12,6 +12,6 @@
 		color: #aaa;
 		font-size: calc(0.1em + 1vw);
 		font-family: 'Poppins', sans-serif;
-		margin: 0.6rem 0;
+		margin: 2rem 0;
 	}
 </style>

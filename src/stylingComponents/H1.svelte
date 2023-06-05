@@ -8,6 +8,7 @@
         font-family: 'Cormorant Upright', serif;
         font-weight: 600;
         color: #dcca87;
+        margin: 2rem 0;
     }
 
 </style>

@@ -65,7 +65,7 @@
 		display: grid;
 		grid-template-columns: 0.1fr 0.1fr 2fr 0.1fr 0.1fr;
 		grid-template-rows: repeat(8, 100px);
-
+        padding-top:8rem ;
 		background-repeat: no-repeat;
 		background-position: cover;
 	}

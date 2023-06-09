@@ -8,19 +8,15 @@
 	import background from '../../lib/images/background/blogbackground.jpg';
 	import { onMount } from 'svelte';
 	import db from '../../firebaseConfig';
-	import { doc, getDocs, collection } from 'firebase/firestore';
+	import { getDocs, collection } from 'firebase/firestore';
+	
 
 	let data = [];
 	onMount(async () => {
 		const querySnapshot = await getDocs(collection(db, 'Blog'));
-
 		querySnapshot.forEach((doc) => {
-			const documentId = doc.id;
-
-			data = [...data, { id: documentId, ...doc.data() }];
-		});
-		data.map((el) => {
-			el.image1 = `src/lib/images/blogs/${el.image1}`;
+		data=[...data,{id:doc.id,...doc.data()}]
+			
 		});
 	});
 </script>

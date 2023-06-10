@@ -1,71 +1,90 @@
 <script>
-	import { fade } from 'svelte/transition';
 	import HeadingMain from '../stylingComponents/HeadingMain.svelte';
 	import H4 from '../stylingComponents/H4.svelte';
 	import P from '../stylingComponents/P.svelte';
 	import cusine from '../lib/images/background/cusines/cusine1.jpg';
+	import white from '../lib/images/background/cusines/white.png';
+	import black from '../lib/images/background/cusines/black.jfif';
 	import Button from '../stylingComponents/Button.svelte';
 	import arrow from '../lib/images/logos/chevron-right-svgrepo-com.svg';
 	import chef from '../lib/images/background/chefs/founderchef.jpg';
-
-	let count = 0;
-	let data = [
-		{
-			heading: 'Food That Surprise You',
-			paragraph:
-				'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus',
-			img: cusine
-		},
-		{
-			heading: 'Love The Original Taste',
-			paragraph:
-				'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus',
-			img: cusine
-		},
-		{
-			heading: 'The Key To Fine Dining',
-			paragraph:
-				'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus',
-			img: chef
-		}
-	];
-	const rightbtn = () => {
-		count = count + 1;
-
-		if (count >= data.length) {
-			count = 0;
-		}
-	};
-	const lefttbtn = () => {
-		count = count - 1;
-
-		if (count < 0) {
-			count = data.length - 1;
-		}
-	};
+	import Carousel from 'svelte-carousel/src/components/Carousel/Carousel.svelte';
 </script>
 
 <div class="container">
 	<div class="hero">
-		<div class="intro">
-			<div class="heading-container">
-				<H4 heading={'Chase The New Flavour'} />
-			</div>
-			<HeadingMain heading={data[count].heading} />
-			<P paragraph={data[count].paragraph} />
-			<Button text={'Explore Menu'} />
+		<div class="rotate">
+			<Carousel
+				autoplay
+				autoplayDuration={6000}
+				particlesToScroll={2}
+				dots={false}
+				arrows={false}
+				swiping={false}
+			>
+				<div class="intro inner-rotate">
+					<div class="heading-container">
+						<H4 heading={'Chase The New Flavour'} />
+					</div>
+					<HeadingMain heading={'Food That Surprise You'} />
+					<P
+						paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
+					/>
+					<Button text={'Explore Menu'} />
+				</div>
+					<img src={black} class="black" alt="" srcset="" />
+
+				<div class="intro inner-rotate">
+					<div class="heading-container">
+						<H4 heading={'Chase The New Flavour'} />
+					</div>
+					<HeadingMain heading={'Food That Surprise You'} />
+					<P
+						paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
+					/>
+					<Button text={'Explore Menu'} />
+				</div>
+				<div class="intro inner-rotate">
+					<div class="heading-container">
+						<H4 heading={'Chase The New Flavour'} />
+					</div>
+					<HeadingMain heading={'Food That Surprise You'} />
+					<P
+						paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
+					/>
+					<Button text={'Explore Menu'} />
+				</div>
+			</Carousel>
 		</div>
+
 		<div class="image-container">
 			<div class="white-rect" />
 			<div class="buttons">
-				<button class="arrow" on:click={lefttbtn}>
+				<button class="arrow">
 					<img src={arrow} class="left" alt="" />
 				</button>
-				<button class="arrow" on:click={rightbtn}>
+				<button class="arrow">
 					<img src={arrow} alt="" />
 				</button>
 			</div>
-			<img src={data[count].img} alt="" class="image" />
+			<div class="image">
+				<Carousel
+					autoplay
+					autoplayDuration={6000}
+					particlesToScroll={2}
+					dots={false}
+					arrows={false}
+					swiping={false}
+				>
+					<img src={cusine} alt="" srcset="" />
+					<img src={white} class="white" alt="" srcset="" />
+					<img src={cusine} alt="" srcset="" />
+					<img src={white} class="white" alt="" srcset="" />
+					<img src={cusine} alt="" srcset="" />
+					<img src={white} class="white" alt="" srcset="" />
+				</Carousel>
+			</div>
+
 			<div class="modifier1" />
 			<div class="modifier2" />
 		</div>
@@ -73,6 +92,22 @@
 </div>
 
 <style>
+	.inner-rotate{
+		transform: rotate(270deg) ;
+		
+
+	}
+	.rotate{
+		transform: rotate(90deg);
+	}
+	.black{
+		height: 45vw;
+
+	}
+	.white {
+		padding: 1px;
+		height: 45vw;
+	}
 	.left {
 		transform: rotate(180deg);
 	}
@@ -106,7 +141,7 @@
 	.buttons {
 		position: absolute;
 		z-index: 2;
-		bottom: 10%;
+		bottom: 30%;
 		background-color: black;
 	}
 	.heading-container {
@@ -114,7 +149,8 @@
 	}
 	.intro {
 		padding: 2rem;
-
+        width: 100%;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

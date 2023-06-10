@@ -4,8 +4,8 @@
 	import H3 from './../stylingComponents/H3.svelte';
 	import InnerH3 from '../stylingComponents/inner/innerH3.svelte';
 	import data from '../localData/exclusiveMenu.js';
-	import P from '../stylingComponents/P.svelte';
-	console.log(data);
+
+
 </script>
 
 <div class="header">

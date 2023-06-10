@@ -3,6 +3,7 @@
 	import H1 from '../stylingComponents/H1.svelte';
     import apetizers from '../localData/apetizers.js'
     import mainCourse from '../localData/Maincourse.js'
+	import MenuSlider from './MenuSlider.svelte';
 </script>
 
 <div class="header">
@@ -15,6 +16,7 @@
         
     {/each}
 </div>
+<MenuSlider/>
 <div class="header">
 	<H1 heading={'Main Course'} />
 </div>

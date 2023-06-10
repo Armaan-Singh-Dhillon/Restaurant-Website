@@ -8,13 +8,13 @@
 	import Button from '../stylingComponents/Button.svelte';
 	import arrow from '../lib/images/logos/chevron-right-svgrepo-com.svg';
 	import chef from '../lib/images/background/chefs/founderchef.jpg';
-	import Carousel from 'svelte-carousel/src/components/Carousel/Carousel.svelte';
+
 </script>
 
 <div class="container">
 	<div class="hero">
 		<div class="rotate">
-			<Carousel
+			<!-- <Carousel
 				autoplay
 				autoplayDuration={6000}
 				particlesToScroll={2}
@@ -54,7 +54,7 @@
 					/>
 					<Button text={'Explore Menu'} />
 				</div>
-			</Carousel>
+			</Carousel> -->
 		</div>
 
 		<div class="image-container">
@@ -68,7 +68,7 @@
 				</button>
 			</div>
 			<div class="image">
-				<Carousel
+				<!-- <Carousel
 					autoplay
 					autoplayDuration={6000}
 					particlesToScroll={2}
@@ -82,7 +82,7 @@
 					<img src={white} class="white" alt="" srcset="" />
 					<img src={cusine} alt="" srcset="" />
 					<img src={white} class="white" alt="" srcset="" />
-				</Carousel>
+				</Carousel> -->
 			</div>
 
 			<div class="modifier1" />

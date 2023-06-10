@@ -5,12 +5,14 @@
 	import P from '../stylingComponents/P.svelte';
 	import data from '../localData/dailyExplosive.js';
 	import { fade, fly, blur } from 'svelte/transition';
+	import Carousel from 'svelte-carousel';
+	import image1 from '../lib/images/menu/dailyExplosion/1.jpg';
+	import image2 from '../lib/images/menu/dailyExplosion/2.jpg';
+	import image3 from '../lib/images/menu/dailyExplosion/3.jpg';
+	import image4 from '../lib/images/menu/dailyExplosion/4.jpg';
+	import image5 from '../lib/images/menu/dailyExplosion/5.jpg';
+	import image6 from '../lib/images/menu/dailyExplosion/6.jpg';
 
-	let weekday = 'monday';
-	const handleClick = (e) => {
-		const value = e.target.getAttribute('value');
-		weekday = value;
-	};
 </script>
 
 <div class="container">
@@ -24,203 +26,48 @@
 		sourced locally whenever possible, to craft a menu that surprises and delights.
 	</div>
 	<div class="three">
-		<div class="tags" value="monday" on:click={(e) => handleClick(e)} on:keyup>Monday</div>
-		<div class="tags" value="tuesday" on:click={(e) => handleClick(e)} on:keyup>Tuesday</div>
-		<div class="tags" value="wednesday" on:click={(e) => handleClick(e)} on:keyup>Wednesday</div>
-		<div class="tags" value="thursday" on:click={(e) => handleClick(e)} on:keyup>Thursday</div>
-		<div class="tags" value="friday" on:click={(e) => handleClick(e)} on:keyup>Friday</div>
-		<div class="tags" value="saturday" on:click={(e) => handleClick(e)} on:keyup>Saturday</div>
-		<div class="tags" value="sunday" on:click={(e) => handleClick(e)} on:keyup>Sunday</div>
+		<div class="tags" value="monday">Monday</div>
+		<div class="tags" value="tuesday">Tuesday</div>
+		<div class="tags" value="wednesday">Wednesday</div>
+		<div class="tags" value="thursday">Thursday</div>
+		<div class="tags" value="friday">Friday</div>
+		<div class="tags" value="saturday">Saturday</div>
+		<div class="tags" value="sunday">Sunday</div>
 	</div>
-	{#if weekday == 'monday'}
-		<div class="four" transition:fade={{ duration: 300 }}>
-			<div class="card">
-				<div class="card-upper">
-					<div class="info">
-						<div class="title">{data[weekday].name}</div>
-						<div class="text">{data[weekday].content}</div>
-					</div>
-					<div class="price">
-						<InnerH3 heading={`$${data[weekday].price}`} />
-					</div>
+
+	<div class="four" >
+		<div class="card">
+			<div class="card-upper">
+				<div class="info">
+					<div class="title">Meatless Madness</div>
+					<div class="text">peach puree, ginger ale, splash of lemon juice.</div>
 				</div>
-				<div class="image-container">
-					<img
-						src={`src/lib/images/menu/dailyExplosion/${data[weekday].image1}`}
-						alt=""
-						srcset=""
-					/>
+				<div class="price">
+					<InnerH3 heading={'$25.19'} />
 				</div>
 			</div>
-		</div>
-		<div class="five" transition:fade={{ duration: 400 }}>
 			<div class="image-container">
-				<img src={`src/lib/images/menu/dailyExplosion/${data[weekday].image2}`} alt="" srcset="" />
+				<Carousel autoplay autoplayDuration={5000} dots={false} arrows={false} swiping={false}>
+					<img src={image1} alt="" />
+					<img src={image3} alt="" />
+					<img src={image5} alt="" />
+				
+					
+				</Carousel>
 			</div>
 		</div>
-	{/if}
-	{#if weekday == 'tuesday'}
-		<div class="four" transition:fade={{ duration: 300 }}>
-			<div class="card">
-				<div class="card-upper">
-					<div class="info">
-						<div class="title">{data[weekday].name}</div>
-						<div class="text">{data[weekday].content}</div>
-					</div>
-					<div class="price">
-						<InnerH3 heading={`$${data[weekday].price}`} />
-					</div>
-				</div>
-				<div class="image-container">
-					<img
-						src={`src/lib/images/menu/dailyExplosion/${data[weekday].image1}`}
-						alt=""
-						srcset=""
-					/>
-				</div>
-			</div>
+	</div>
+	<div class="five" >
+		<div class="image-container">
+			<Carousel autoplay autoplayDuration={2000} dots={false} arrows={false} swiping={false}>
+					<img src={image2} alt="" />
+					<img src={image4} alt="" />
+					<img src={image6} alt="" />
+					
+					
+				</Carousel>
 		</div>
-		<div class="five" transition:fade={{ duration: 400 }}>
-			<div class="image-container">
-				<img src={`src/lib/images/menu/dailyExplosion/${data[weekday].image2}`} alt="" srcset="" />
-			</div>
-		</div>
-	{/if}
-	{#if weekday == 'wednesday'}
-		<div class="four" transition:fade={{ duration: 300 }}>
-			<div class="card">
-				<div class="card-upper">
-					<div class="info">
-						<div class="title">{data[weekday].name}</div>
-						<div class="text">{data[weekday].content}</div>
-					</div>
-					<div class="price">
-						<InnerH3 heading={`$${data[weekday].price}`} />
-					</div>
-				</div>
-				<div class="image-container">
-					<img
-						src={`src/lib/images/menu/dailyExplosion/${data[weekday].image1}`}
-						alt=""
-						srcset=""
-					/>
-				</div>
-			</div>
-		</div>
-		<div class="five" transition:fade={{ duration: 400 }}>
-			<div class="image-container">
-				<img src={`src/lib/images/menu/dailyExplosion/${data[weekday].image2}`} alt="" srcset="" />
-			</div>
-		</div>
-	{/if}
-	{#if weekday == 'thursday'}
-		<div class="four" transition:fade={{ duration: 300 }}>
-			<div class="card">
-				<div class="card-upper">
-					<div class="info">
-						<div class="title">{data[weekday].name}</div>
-						<div class="text">{data[weekday].content}</div>
-					</div>
-					<div class="price">
-						<InnerH3 heading={`$${data[weekday].price}`} />
-					</div>
-				</div>
-				<div class="image-container">
-					<img
-						src={`src/lib/images/menu/dailyExplosion/${data[weekday].image1}`}
-						alt=""
-						srcset=""
-					/>
-				</div>
-			</div>
-		</div>
-		<div class="five" transition:fade={{ duration: 400 }}>
-			<div class="image-container">
-				<img src={`src/lib/images/menu/dailyExplosion/${data[weekday].image2}`} alt="" srcset="" />
-			</div>
-		</div>
-	{/if}
-	{#if weekday == 'friday'}
-		<div class="four" transition:fade={{ duration: 300 }}>
-			<div class="card">
-				<div class="card-upper">
-					<div class="info">
-						<div class="title">{data[weekday].name}</div>
-						<div class="text">{data[weekday].content}</div>
-					</div>
-					<div class="price">
-						<InnerH3 heading={`$${data[weekday].price}`} />
-					</div>
-				</div>
-				<div class="image-container">
-					<img
-						src={`src/lib/images/menu/dailyExplosion/${data[weekday].image1}`}
-						alt=""
-						srcset=""
-					/>
-				</div>
-			</div>
-		</div>
-		<div class="five" transition:fade={{ duration: 400 }}>
-			<div class="image-container">
-				<img src={`src/lib/images/menu/dailyExplosion/${data[weekday].image2}`} alt="" srcset="" />
-			</div>
-		</div>
-	{/if}
-	{#if weekday == 'saturday'}
-		<div class="four" transition:fade={{ duration: 300 }}>
-			<div class="card">
-				<div class="card-upper">
-					<div class="info">
-						<div class="title">{data[weekday].name}</div>
-						<div class="text">{data[weekday].content}</div>
-					</div>
-					<div class="price">
-						<InnerH3 heading={`$${data[weekday].price}`} />
-					</div>
-				</div>
-				<div class="image-container">
-					<img
-						src={`src/lib/images/menu/dailyExplosion/${data[weekday].image1}`}
-						alt=""
-						srcset=""
-					/>
-				</div>
-			</div>
-		</div>
-		<div class="five" transition:fade={{ duration: 400 }}>
-			<div class="image-container">
-				<img src={`src/lib/images/menu/dailyExplosion/${data[weekday].image2}`} alt="" srcset="" />
-			</div>
-		</div>
-	{/if}
-	{#if weekday == 'sunday'}
-		<div class="four" transition:fade={{ duration: 300 }}>
-			<div class="card">
-				<div class="card-upper">
-					<div class="info">
-						<div class="title">{data[weekday].name}</div>
-						<div class="text">{data[weekday].content}</div>
-					</div>
-					<div class="price">
-						<InnerH3 heading={`$${data[weekday].price}`} />
-					</div>
-				</div>
-				<div class="image-container">
-					<img
-						src={`src/lib/images/menu/dailyExplosion/${data[weekday].image1}`}
-						alt=""
-						srcset=""
-					/>
-				</div>
-			</div>
-		</div>
-		<div class="five" transition:fade={{ duration: 400 }}>
-			<div class="image-container">
-				<img src={`src/lib/images/menu/dailyExplosion/${data[weekday].image2}`} alt="" srcset="" />
-			</div>
-		</div>
-	{/if}
+	</div>
 </div>
 
 <style>
@@ -243,6 +90,7 @@
 		padding: 2rem;
 		background-color: black;
 		position: absolute;
+		z-index: 1;
 	}
 
 	.text {

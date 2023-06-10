@@ -21,6 +21,7 @@
 	.card {
 		width: 100%;
         margin: 1rem;
+		
 	}
 	.upper-card {
 		width: 100%;

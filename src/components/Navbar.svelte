@@ -14,6 +14,7 @@
 	<div class="middle">
 		<div>Home</div>
 		<div>Pages</div>
+		
 		<div>Contact Us</div>
 		<div>Blog</div>
 	</div>
@@ -27,7 +28,9 @@
 	<div class="middle-container">
 		<div class="middle">
 			<div>Home</div>
-			<div>Pages</div>
+			<a href="/menu">
+				<div>Menu</div>
+			</a>
 			<div>Contact Us</div>
 			<div>
 				<a href="/blog">Blog</a>
@@ -40,7 +43,7 @@
 		<div class="stickers">
 			<img src={Search} alt="" />
 
-			<img src={bars} alt="" on:click={toggle} />
+			<!-- <img src={bars} alt="" on:click={toggle} /> -->
 		</div>
 	</div>
 </div>

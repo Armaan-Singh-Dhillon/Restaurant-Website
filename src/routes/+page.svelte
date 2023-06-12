@@ -4,16 +4,15 @@
 	import Hero from '../components/Hero.svelte';
 	import Laurel from '../components/Laurel.svelte';
 	import Chefsword from '../components/chefsword.svelte';
-
+	import Backeffectmenu from '../components/backeffectmenu.svelte';
 </script>
 
+<Hero />
+<Backeffectmenu />
+<Chefsword />
+<Menu />
 
-		<Hero />
-		<Menu />
-		<Chefsword />
-		<Laurel />
-		
+<Laurel />
 
 <style>
-
 </style>

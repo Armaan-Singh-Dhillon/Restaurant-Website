@@ -3,70 +3,66 @@
 	import H2 from './../../stylingComponents/H2.svelte';
 	import H4 from './../../stylingComponents/H4.svelte';
 	import P from '../../stylingComponents/P.svelte';
-	import loader from '../../lib/images/logos/loader.svg';
-	import scissor from '../../lib/images/logos/loaderscicssors.svg';
-	import background from '../../lib/images/background/blogbackground.jpg';
-	import { onMount } from 'svelte';
+
+	import {  onMount } from 'svelte';
 	import db from '../../firebaseConfig';
 	import { getDocs, collection } from 'firebase/firestore';
-	
+	import isLoading from '../../stroes/globalLoader.js';
 
 	let data = [];
+	isLoading.set(true);
 	onMount(async () => {
 		const querySnapshot = await getDocs(collection(db, 'Blog'));
 		querySnapshot.forEach((doc) => {
-		data=[...data,{id:doc.id,...doc.data()}]
-			
+			data = [...data, { id: doc.id, ...doc.data() }];
 		});
+		setTimeout(()=>{isLoading.set(false)},2000)
+	
+
+
 	});
+
 </script>
 
-{#if data.length == 0}
-	<div class="loader-container">
-		<img src={scissor} class="scissor" alt="" />
-		<img src={loader} class="loader" alt="" />
+<div class="blog">
+	<div class="image-container">
+		<H2 heading={'Welcome To Our Blog'} />
 	</div>
-{:else}
-	<div class="blog">
-		<div class="image-container">
-			<H2 heading={'Welcome To Our Blog'} />
-		</div>
 
-		<div class="container">
-			{#each data as item}
-				<div class="card">
-					<div class="card-image">
-						<img src={item.image1} alt="" />
-					</div>
-					<div class="stamps">
-						<div>
-							{item.date}
-						</div>
-						<div>
-							{item.writer.Postedby}
-						</div>
+	<div class="container">
+		{#each data as item}
+			<div class="card">
+				<div class="card-image">
+					<img src={item.image1} alt="" />
+				</div>
+				<div class="stamps">
+					<div>
+						{item.date}
 					</div>
 					<div>
-						<a href={`blog/${item.id}`}>
-							<H4 heading={item.name} />
-						</a>
-					</div>
-					<div class="heading">
-						<a href={`blog/${item.id}`}>
-							{item.mainTitle}
-						</a>
-					</div>
-					<div>
-						<P paragraph={item.intro} />
-					</div>
-					<div class="read">
-						<a href={`blog/${item.id}`}> Read More </a>
+						{item.writer.Postedby}
 					</div>
 				</div>
-			{/each}
-		</div>
+				<div>
+					<a href={`blog/${item.id}`}>
+						<H4 heading={item.name} />
+					</a>
+				</div>
+				<div class="heading">
+					<a href={`blog/${item.id}`}>
+						{item.mainTitle}
+					</a>
+				</div>
+				<div>
+					<P paragraph={item.intro} />
+				</div>
+				<div class="read">
+					<a href={`blog/${item.id}`}> Read More </a>
+				</div>
+			</div>
+		{/each}
 	</div>
-{/if}
+</div>
 
 <style>
 	a {
@@ -154,40 +150,5 @@
 	}
 	.read:hover::before {
 		width: 20px;
-	}
-	.loader-container img {
-		width: 100%;
-		object-fit: cover;
-	}
-	.loader-container {
-		width: 20%;
-	}
-	@keyframes rotate {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-	.loader-container {
-		position: relative;
-		animation: 2s 1 scale;
-	}
-	@keyframes scale {
-		0% {
-			transform: scale(0);
-		}
-		100% {
-			transform: scale(1);
-		}
-	}
-	.loader {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		animation: 12s infinite rotate;
 	}
 </style>

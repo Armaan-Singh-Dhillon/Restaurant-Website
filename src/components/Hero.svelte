@@ -8,6 +8,7 @@
 	import Button from '../stylingComponents/Button.svelte';
 	import arrow from '../lib/images/logos/chevron-right-svgrepo-com.svg';
 	import chef from '../lib/images/background/chefs/founderchef.jpg';
+	import Carousel from 'svelte-carousel';
 
 </script>
 
@@ -68,7 +69,7 @@
 				</button>
 			</div>
 			<div class="image">
-				<!-- <Carousel
+				<Carousel
 					autoplay
 					autoplayDuration={6000}
 					particlesToScroll={2}
@@ -82,7 +83,7 @@
 					<img src={white} class="white" alt="" srcset="" />
 					<img src={cusine} alt="" srcset="" />
 					<img src={white} class="white" alt="" srcset="" />
-				</Carousel> -->
+				</Carousel>
 			</div>
 
 			<div class="modifier1" />

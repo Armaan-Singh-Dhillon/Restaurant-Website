@@ -9,6 +9,16 @@
 	import image4 from '../lib/images/menu/dailyExplosion/4.jpg';
 	import image5 from '../lib/images/menu/dailyExplosion/5.jpg';
 	import image6 from '../lib/images/menu/dailyExplosion/6.jpg';
+	import Carousel from './Carousel.svelte';
+	import data from '../localData/dailyExplosive.js';
+	let weekday = 'monday';
+	const handleClick = (e) => {
+		const value = e.target.getAttribute('value');
+		weekday = value;
+
+		
+	};
+	console.log(data)
 </script>
 
 <div class="container">
@@ -21,35 +31,44 @@
 		that our talented team has curated. Each day, our chefs select the finest seasonal ingredients,
 		sourced locally whenever possible, to craft a menu that surprises and delights.
 	</div>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="three">
-		<div class="tags" value="monday">Monday</div>
-		<div class="tags" value="tuesday">Tuesday</div>
-		<div class="tags" value="wednesday">Wednesday</div>
-		<div class="tags" value="thursday">Thursday</div>
-		<div class="tags" value="friday">Friday</div>
-		<div class="tags" value="saturday">Saturday</div>
-		<div class="tags" value="sunday">Sunday</div>
+		<div class="tags" value="monday" on:click={(e) => handleClick(e)}>Monday</div>
+		<div class="tags" value="tuesday" on:click={(e) => handleClick(e)}>Tuesday</div>
+		<div class="tags" value="wednesday" on:click={(e) => handleClick(e)}>Wednesday</div>
+		<div class="tags" value="thursday" on:click={(e) => handleClick(e)}>Thursday</div>
+		<div class="tags" value="friday" on:click={(e) => handleClick(e)}>Friday</div>
+		<div class="tags" value="saturday" on:click={(e) => handleClick(e)}>Saturday</div>
+		<div class="tags" value="sunday" on:click={(e) => handleClick(e)}>Sunday</div>
 	</div>
 
 	<div class="four">
 		<div class="card">
 			<div class="card-upper">
 				<div class="info">
-					<div class="title">Meatless Madness</div>
-					<div class="text">peach puree, ginger ale, splash of lemon juice.</div>
+					<div class="title">{data[weekday].name}</div>
+					<div class="text">{data[weekday].content}</div>
 				</div>
 				<div class="price">
-					<InnerH3 heading={'$25.19'} />
+					<InnerH3 heading={data[weekday].price} />
 				</div>
 			</div>
 			<div class="image-container">
-				<img src={image5} alt="" />
+				<Carousel autoplay="2000" perPage="1" dots="false" controls="false" duration="600">
+					<img src={image1} alt="" />
+					<img src={image2} alt="" />
+					<img src={image3} alt="" />
+				</Carousel>
 			</div>
 		</div>
 	</div>
 	<div class="five">
 		<div class="image-container">
-			<img src={image6} alt="" />
+			<Carousel autoplay="5000" perPage="1" dots="false" controls="false" duration="600">
+				<img src={image4} alt="" />
+				<img src={image5} alt="" />
+				<img src={image6} alt="" />
+			</Carousel>
 		</div>
 	</div>
 </div>

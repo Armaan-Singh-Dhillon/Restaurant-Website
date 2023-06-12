@@ -41,21 +41,25 @@
 <style>
 	.container {
 		display: grid;
-		height: 600px;
+		height: 800px;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		position: relative;
-		transition: all 0.4s ease-in-out;
+
 	}
 	.back1 {
-		background-image: url(../lib/images/background/beerBack.jpg);
+		background-image: url(../lib/images/background/02-min-scaled.jpg);
+		background-size: cover;
+
 	}
 
 	.back2 {
-		background-image: url(../lib/images/background/chickenBackground.jpg);
+		background-image: url(../lib/images/background/01-min-scaled.jpg);
 		background-size: cover;
 	}
 	.back3 {
-		background-image: url(../lib/images/background/blog-inner.avif);
+		background-image: url(../lib/images/background/03-min-scaled.jpg);
+		background-size: cover;
+
 	}
 	.one {
 		transition: all 0.4s ease-in-out;
@@ -82,7 +86,7 @@
 	.show {
 		margin: 0;
 		transform: scaleY(0);
-		transition: all 0.4s ;
+		transition: all 0.4s;
 		transform-origin: bottom;
 	}
 

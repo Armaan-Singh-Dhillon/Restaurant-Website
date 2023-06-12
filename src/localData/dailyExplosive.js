@@ -1,53 +1,42 @@
 const data =
-    [{
-        image1: '1.jpg',
-        image2: '2.jpg',
+{
+    monday: {
         name: 'Meatless Madness',
         content: 'peach puree, ginger ale, splash of lemon juice.',
         price: 25.16
     },
-    {
-        image1: '3.jpg',
-        image2: '4.jpg',
+    tueday: {
         name: 'Tropical Delight',
         content: 'mango puree, pineapple juice, coconut milk.',
         price: 28.50
     },
-    {
-        image1: '5.jpg',
-        image2: '14.jpg',
+    wednesday: {
         name: 'Berry Blast',
         content: 'strawberry puree, blueberry syrup, lemonade.',
         price: 22.80
     },
-    {
-        image1: '6.jpg',
-        image2: '7.jpg',
+    thursday: {
         name: 'Citrus Splash',
         content: 'orange juice, grapefruit juice, lime slices.',
         price: 19.99
     },
-    {
-        image1: '8.jpg',
-        image2: '9.jpg',
+    friday: {
+
         name: 'Minty Mojito',
         content: 'muddled mint leaves, lime juice, soda water.',
         price: 24.75
     },
-    {
-        image1: '10.jpg',
-        image2: '11.jpg',
+    saturday: {
+
         name: 'Sunset Sangria',
         content: 'red wine, orange slices, brandy, soda water.',
         price: 32.40
     },
-    {
-        image1: '12.jpg',
-        image2: '13.jpg',
+    sunday: {
         name: 'Creamy Cappuccino',
         content: 'espresso, steamed milk, frothed milk.',
         price: 18.60
     }
-    ];
+};
 
 export default data

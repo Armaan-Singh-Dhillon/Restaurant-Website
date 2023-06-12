@@ -2,21 +2,51 @@
 	import HeadingMain from '../stylingComponents/HeadingMain.svelte';
 	import H4 from '../stylingComponents/H4.svelte';
 	import P from '../stylingComponents/P.svelte';
-	import cusine from '../lib/images/background/cusines/cusine1.jpg';
-	import white from '../lib/images/background/cusines/white.png';
-	import black from '../lib/images/background/cusines/black.jfif';
+	import cusine1 from '../lib/images/background/cusines/cusine1.jpg';
+	import cusine2 from '../lib/images/background/cusines/cusine2.jpg';
+	import cusine3 from '../lib/images/background/cusines/cusine3.jpg';
+	import cusine4 from '../lib/images/background/cusines/pancakes.jpg';
 	import Button from '../stylingComponents/Button.svelte';
 	import arrow from '../lib/images/logos/chevron-right-svgrepo-com.svg';
-	import chef from '../lib/images/background/chefs/founderchef.jpg';
-
-
+	import Carousel from './Carousel.svelte';
 </script>
 
 <div class="container">
 	<div class="hero">
 		<div class="rotate">
-		
-			<div class="intro inner-rotate">
+			<Carousel autoplay="8000" perPage="1" dots="false" controls="false" duration="600">
+				<div class="intro inner-rotate">
+					<div class="heading-container">
+						<H4 heading={'Chase The New Flavour'} />
+					</div>
+					<HeadingMain heading={'Food That Surprise You'} />
+					<P
+						paragraph={'As you step into the elegant and contemporary space, you are immediately greeted by a warm and inviting ambiance. The meticulously designed interior, adorned with exquisite artwork and soft lighting, creates an intimate atmosphere that sets the stage for an unforgettable evening.'}
+					/>
+					<Button text={'Explore Menu'} />
+				</div>
+				<div class="intro inner-rotate">
+					<div class="heading-container">
+						<H4 heading={'Chase The New Flavour'} />
+					</div>
+					<HeadingMain heading={'Love The Original Taste'} />
+					<P
+						paragraph={'With a focus on seasonal and sustainable produce, each dish bursts with vibrant flavors and textures, creating a symphony of tastes on the palate. The menu features a harmonious blend of classic and contemporary dishes, all expertly executed to perfection.'}
+					/>
+					<Button text={'Explore Menu'} />
+				</div>
+				<div class="intro inner-rotate">
+					<div class="heading-container">
+						<H4 heading={'Quality Served Timely'} />
+					</div>
+					<HeadingMain heading={'Food That Surprise You'} />
+					<P
+						paragraph={'Whether you prefer a full-bodied red wine to accompany your perfectly cooked steak or a refreshing artisanal cocktail to start your evening, our knowledgeable staff will guide you through the extensive beverage menu, ensuring a seamless pairing with your chosen dishes. '}
+					/>
+					<Button text={'Explore Menu'} />
+				</div>
+			</Carousel>
+			<!-- <div class="intro inner-rotate">
 				<div class="heading-container">
 					<H4 heading={'Chase The New Flavour'} />
 				</div>
@@ -25,22 +55,36 @@
 					paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
 				/>
 				<Button text={'Explore Menu'} />
-			</div>
+			</div> -->
 		</div>
 
 		<div class="image-container">
 			<div class="white-rect" />
-			<div class="buttons">
-				<button class="arrow">
-					<img src={arrow} class="left" alt="" />
-				</button>
-				<button class="arrow">
-					<img src={arrow} alt="" />
-				</button>
-			</div>
+
 			<div class="image">
-				
-				<img src={cusine} alt="" srcset="" />
+				<Carousel autoplay="5000" perPage="1" dots="false" controls="false" duration="600">
+					<img src={cusine1} class="carousel" alt="" srcset="" />
+					<img src={cusine2} class="carousel" alt="" srcset="" />
+
+					<img src={cusine3} class="carousel" alt="" srcset="" />
+
+					<img src={cusine4} class="carousel" alt="" srcset="" />
+
+					<span class="left-control" slot="left-control"
+						><div class="buttons">
+							<button class="arrow">
+								<img src={arrow} class="left" alt="" />
+							</button>
+						</div></span
+					>
+					<span class="right-control" slot="right-control"
+						><div class="buttons">
+							<button class="arrow">
+								<img src={arrow} alt="" />
+							</button>
+						</div></span
+					>
+				</Carousel>
 			</div>
 
 			<div class="modifier1" />
@@ -50,7 +94,10 @@
 </div>
 
 <style>
-
+	.carousel {
+		height: 45vw;
+		object-fit: cover;
+	}
 	.left {
 		transform: rotate(180deg);
 	}
@@ -92,7 +139,7 @@
 	}
 	.intro {
 		padding: 2rem;
-        width: 100%;
+		width: 100%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -139,5 +186,11 @@
 	.image {
 		grid-area: 2/2/-2/-2;
 		z-index: 1;
+		position: relative;
+	}
+
+	.right-control,
+	.left-control {
+		color: white;
 	}
 </style>

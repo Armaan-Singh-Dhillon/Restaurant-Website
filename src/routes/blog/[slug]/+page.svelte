@@ -14,13 +14,16 @@
 	import { doc, getDoc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 	import db from '../../../firebaseConfig.js';
+	import isLoading from '../../../stroes/globalLoader.js'
 
 	export let data;
 	let blogdata = {};
+	isLoading.set(true);
 	onMount(async () => {
 		const docRef = doc(db, 'Blog', data.slug);
 		const docSnap = await getDoc(docRef);
 		blogdata = { id: docSnap.id, ...docSnap.data() };
+		setTimeout(()=>{isLoading.set(false)},2000)
 	});
 </script>
 

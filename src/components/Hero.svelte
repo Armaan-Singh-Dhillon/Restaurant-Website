@@ -8,54 +8,24 @@
 	import Button from '../stylingComponents/Button.svelte';
 	import arrow from '../lib/images/logos/chevron-right-svgrepo-com.svg';
 	import chef from '../lib/images/background/chefs/founderchef.jpg';
-	import Carousel from 'svelte-carousel';
+
 
 </script>
 
 <div class="container">
 	<div class="hero">
 		<div class="rotate">
-			<!-- <Carousel
-				autoplay
-				autoplayDuration={6000}
-				particlesToScroll={2}
-				dots={false}
-				arrows={false}
-				swiping={false}
-			>
-				<div class="intro inner-rotate">
-					<div class="heading-container">
-						<H4 heading={'Chase The New Flavour'} />
-					</div>
-					<HeadingMain heading={'Food That Surprise You'} />
-					<P
-						paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
-					/>
-					<Button text={'Explore Menu'} />
+		
+			<div class="intro inner-rotate">
+				<div class="heading-container">
+					<H4 heading={'Chase The New Flavour'} />
 				</div>
-					<img src={black} class="black" alt="" srcset="" />
-
-				<div class="intro inner-rotate">
-					<div class="heading-container">
-						<H4 heading={'Chase The New Flavour'} />
-					</div>
-					<HeadingMain heading={'Food That Surprise You'} />
-					<P
-						paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
-					/>
-					<Button text={'Explore Menu'} />
-				</div>
-				<div class="intro inner-rotate">
-					<div class="heading-container">
-						<H4 heading={'Chase The New Flavour'} />
-					</div>
-					<HeadingMain heading={'Food That Surprise You'} />
-					<P
-						paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
-					/>
-					<Button text={'Explore Menu'} />
-				</div>
-			</Carousel> -->
+				<HeadingMain heading={'Food That Surprise You'} />
+				<P
+					paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
+				/>
+				<Button text={'Explore Menu'} />
+			</div>
 		</div>
 
 		<div class="image-container">
@@ -69,21 +39,8 @@
 				</button>
 			</div>
 			<div class="image">
-				<Carousel
-					autoplay
-					autoplayDuration={6000}
-					particlesToScroll={2}
-					dots={false}
-					arrows={false}
-					swiping={false}
-				>
-					<img src={cusine} alt="" srcset="" />
-					<img src={white} class="white" alt="" srcset="" />
-					<img src={cusine} alt="" srcset="" />
-					<img src={white} class="white" alt="" srcset="" />
-					<img src={cusine} alt="" srcset="" />
-					<img src={white} class="white" alt="" srcset="" />
-				</Carousel>
+				
+				<img src={cusine} alt="" srcset="" />
 			</div>
 
 			<div class="modifier1" />
@@ -93,22 +50,7 @@
 </div>
 
 <style>
-	.inner-rotate{
-		transform: rotate(270deg) ;
-		
 
-	}
-	.rotate{
-		transform: rotate(90deg);
-	}
-	.black{
-		height: 45vw;
-
-	}
-	.white {
-		padding: 1px;
-		height: 45vw;
-	}
 	.left {
 		transform: rotate(180deg);
 	}

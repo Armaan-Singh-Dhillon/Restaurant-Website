@@ -30,6 +30,7 @@
 	"type": "module",
 	"dependencies": {
 		"firebase": "^9.22.1",
+		"resize-observer-polyfill": "^1.5.1",
 		"svelte-carousel": "^1.0.25"
 	}
 }

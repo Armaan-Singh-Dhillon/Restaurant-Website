@@ -2,17 +2,13 @@
 	import InnerH3 from './../stylingComponents/inner/innerH3.svelte';
 	import InnerH1 from './../stylingComponents/inner/innerH1.svelte';
 	import H4 from './../stylingComponents/H4.svelte';
-	import P from '../stylingComponents/P.svelte';
-	import data from '../localData/dailyExplosive.js';
-	import { fade, fly, blur } from 'svelte/transition';
-	import Carousel from 'svelte-carousel';
+
 	import image1 from '../lib/images/menu/dailyExplosion/1.jpg';
 	import image2 from '../lib/images/menu/dailyExplosion/2.jpg';
 	import image3 from '../lib/images/menu/dailyExplosion/3.jpg';
 	import image4 from '../lib/images/menu/dailyExplosion/4.jpg';
 	import image5 from '../lib/images/menu/dailyExplosion/5.jpg';
 	import image6 from '../lib/images/menu/dailyExplosion/6.jpg';
-
 </script>
 
 <div class="container">
@@ -35,7 +31,7 @@
 		<div class="tags" value="sunday">Sunday</div>
 	</div>
 
-	<div class="four" >
+	<div class="four">
 		<div class="card">
 			<div class="card-upper">
 				<div class="info">
@@ -47,25 +43,13 @@
 				</div>
 			</div>
 			<div class="image-container">
-				<Carousel autoplay autoplayDuration={5000} dots={false} arrows={false} swiping={false}>
-					<img src={image1} alt="" />
-					<img src={image3} alt="" />
-					<img src={image5} alt="" />
-				
-					
-				</Carousel>
+				<img src={image5} alt="" />
 			</div>
 		</div>
 	</div>
-	<div class="five" >
+	<div class="five">
 		<div class="image-container">
-			<Carousel autoplay autoplayDuration={2000} dots={false} arrows={false} swiping={false}>
-					<img src={image2} alt="" />
-					<img src={image4} alt="" />
-					<img src={image6} alt="" />
-					
-					
-				</Carousel>
+			<img src={image6} alt="" />
 		</div>
 	</div>
 </div>

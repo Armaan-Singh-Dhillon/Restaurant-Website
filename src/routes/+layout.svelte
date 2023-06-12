@@ -70,7 +70,7 @@
 	}
 	@keyframes scale {
 		0% {
-			transform: scale(0.5);
+			transform: scale(0.2);
 		}
 		100% {
 			transform: scale(1);

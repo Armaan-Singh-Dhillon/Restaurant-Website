@@ -5,14 +5,33 @@
 <style>
     .btn{
         
-        background-color: #dcca87;
+        background-color: black;
         border: none;
         padding: 0.8rem;
         font-family: 'Cormorant Upright', serif;
         font-size: calc(0.2em + 1vw);
+        cursor: pointer;
+        color: white;
+        z-index: 2;
+        position: relative;
 
     }
-   
+   .btn::before {
+		content: '';
+		position: absolute;
+		background-color: #dcca87;
+		z-index: -1;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 0;
+		transition: all ease-out 0.4s;
+	}
+	.btn:hover::before {
+		left: 0;
+		right: auto;
+		width: 100%;
+	}
 
 </style>
 <div class="heading">

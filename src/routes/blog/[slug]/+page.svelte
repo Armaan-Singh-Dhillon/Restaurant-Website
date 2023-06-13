@@ -14,7 +14,7 @@
 	import { doc, getDoc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 	import db from '../../../firebaseConfig.js';
-	import isLoading from '../../../stroes/globalLoader.js'
+	import isLoading from '../../../stores/globalLoader.js'
 
 	export let data;
 	let blogdata = {};

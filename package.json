@@ -12,6 +12,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@bulatdashiev/svelte-slider": "^1.0.3",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
@@ -32,6 +33,5 @@
 		"firebase": "^9.22.1",
 		"resize-observer-polyfill": "^1.5.1",
 		"siema": "^1.5.1"
-
 	}
 }

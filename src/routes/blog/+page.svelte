@@ -1,33 +1,29 @@
 <script>
-	import H1 from './../../stylingComponents/H1.svelte';
+	import blogStore from '../../stores/blogStore.js';
 	import H2 from './../../stylingComponents/H2.svelte';
 	import H4 from './../../stylingComponents/H4.svelte';
 	import P from '../../stylingComponents/P.svelte';
-
-	import {  onMount } from 'svelte';
-	import db from '../../firebaseConfig';
-	import { getDocs, collection } from 'firebase/firestore';
-	import isLoading from '../../stroes/globalLoader.js';
-
+	import { onMount } from 'svelte';
+  import Carousel from '../../components/Carousel.svelte';
+	import isLoading from '../../stores/globalLoader.js';
 	let data = [];
 	isLoading.set(true);
 	onMount(async () => {
-		const querySnapshot = await getDocs(collection(db, 'Blog'));
-		querySnapshot.forEach((doc) => {
-			data = [...data, { id: doc.id, ...doc.data() }];
+		
+		blogStore.subscribe((value) => {
+			data = value;
 		});
-		setTimeout(()=>{isLoading.set(false)},2000)
-	
-
-
+		setTimeout(() => {
+			isLoading.set(false);
+		}, 2000);
 	});
-
 </script>
 
 <div class="blog">
 	<div class="image-container">
 		<H2 heading={'Welcome To Our Blog'} />
 	</div>
+
 
 	<div class="container">
 		{#each data as item}

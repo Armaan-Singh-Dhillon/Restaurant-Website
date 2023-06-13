@@ -1,15 +1,39 @@
 <script>
-	import Menu from './../components/Menu.svelte';
 	import Navbar from '../components/Navbar.svelte';
 	import Footer from '../components/Footer.svelte';
 	import scissor from '../lib/images/logos/loaderscicssors.svg';
 	import loader from '../lib/images/logos/loader.svg';
-	import isLoading from '../stroes/globalLoader.js';
+	import isLoading from '../stores/globalLoader.js';
+	import { getDocs, collection } from 'firebase/firestore';
+	import { onMount } from 'svelte';
+	import db from '../firebaseConfig.js';
+	import blogStore from '../stores/blogStore.js';
+	import dishStore from '../stores/dishes.js';
+
+	isLoading.set(true);
+
+	onMount(async () => {
+		let blogData = [];
+		let productData = [];
+		const querySnapshot1 = await getDocs(collection(db, 'Blog'));
+		querySnapshot1.forEach((doc) => {
+			blogData = [...blogData, { id: doc.id, ...doc.data() }];
+		});
+		blogStore.set(blogData);
+		const querySnapshot2 = await getDocs(collection(db, 'dishes'));
+		querySnapshot2.forEach((doc) => {
+			productData = [...productData, { id: doc.id, show: false, ...doc.data() }];
+		});
+		dishStore.set(productData);
+
+		setTimeout(() => {
+			isLoading.set(false);
+		}, 2000);
+	});
 </script>
 
 <div class="main">
 	{#if $isLoading}
-		<!-- content here -->
 		<div class="center">
 			<div class="loader-container">
 				<img src={scissor} class="scissor" alt="" />
@@ -17,10 +41,10 @@
 			</div>
 		</div>
 	{/if}
-	
 
-	<div class={`container ${$isLoading ?'none':''}`}>
+	<div class={`container ${$isLoading ? 'none' : ''}`}>
 		<Navbar />
+
 		<div class="main">
 			<slot />
 		</div>
@@ -29,8 +53,8 @@
 </div>
 
 <style>
-	.none{
-		display: none;
+	.none {
+		visibility: hidden;
 	}
 	.main {
 		position: relative;
@@ -39,14 +63,14 @@
 		display: flex;
 		justify-content: space-evenly;
 		align-items: center;
-		position: absolute;
+		position: sticky;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
-		z-index: 1;
+		z-index: 10;
 		width: 100%;
-		height: 80vh;
+		height: 100vh;
 		background-color: #000;
 	}
 	.loader-container img {

@@ -31,7 +31,8 @@
 			<a href="/menu">
 				<div>Menu</div>
 			</a>
-			<div>Contact Us</div>
+			<div >
+				<a href="/shop">shop</a></div>
 			<div>
 				<a href="/blog">Blog</a>
 			</div>

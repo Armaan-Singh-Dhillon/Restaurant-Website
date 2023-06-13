@@ -1,14 +1,25 @@
 <script>
+	import H4 from './../stylingComponents/H4.svelte';
+
 	import InnerH3 from '../stylingComponents/inner/innerH3.svelte';
 	import search from '../lib/images/logos/search.svg';
+	import blogStore from '../stores/blogStore.js';
+	import { onMount } from 'svelte';
 
+
+	let data = [];
+	onMount(() => {
+		blogStore.subscribe((value) => {
+			data = value;
+		});
+	});
 </script>
 
 <div class="sidebar glow">
 	<div>
 		<div class="search">
 			<input type="" placeholder="Search" />
-			<img src={search} class="search-icon" alt="">
+			<img src={search} class="search-icon" alt="" />
 		</div>
 		<div class="categories">
 			<div class="title-tags">
@@ -61,14 +72,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="carousel">
+		
+			</div>
 		</div>
 	</div>
 </div>
 
 <style>
-	.search-icon{
+	
+	.search-icon {
 		width: 20px;
-
 	}
 	.popular-tags {
 		display: grid;

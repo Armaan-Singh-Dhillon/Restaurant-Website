@@ -1,4 +1,5 @@
 <script>
+	import Carousel from './../../../components/Carousel.svelte';
 	import Button from './../../../stylingComponents/Button.svelte';
 	import H2 from './../../../stylingComponents/H2.svelte';
 	import InnerH3 from './../../../stylingComponents/inner/innerH3.svelte';
@@ -10,7 +11,26 @@
 	import cook from '../../../lib/images/logos/cook.svg';
 	import sale from '../../../lib/images/logos/discount.svg';
 	import random from '../../../lib/images/random.jpg';
+	import { doc, getDoc } from 'firebase/firestore';
+	import { onMount } from 'svelte';
+	import db from '../../../firebaseConfig.js';
+	import isLoading from '../../../stores/globalLoader.js';
+
 	let yes = false;
+	export let data;
+	isLoading.set(true);
+	let notAvailable = [];
+	let dishData = {};
+
+	onMount(async () => {
+		const docRef = doc(db, 'dishes', data.slug);
+		const docSnap = await getDoc(docRef);
+		dishData = { id: docSnap.id, ...docSnap.data() };
+		setTimeout(() => {
+			isLoading.set(false);
+		}, 2000);
+	});
+
 	let user = {
 		name: 'Tiago Vilas Boas',
 		phone: '11 972393003',
@@ -18,237 +38,224 @@
 	};
 </script>
 
-<div class="container">
-	<div class="image-container">
-		<img src={cusine} alt="" srcset="" />
-	</div>
-	<div class="info">
-		<div class="title section">
-			<H2 heading={'Butter Chicken'} />
+{#if $isLoading}
+	hi
+{:else}
+	<div class="container">
+		<div class="image-container">
+			<img src={`../src/lib/images/dishes${dishData.image}.jpg`} alt="" srcset="" />
 		</div>
-		<div class="star-container section">
-			<Star starData={4.5} />
-		</div>
-		<div class="price section">
-			<H3 heading={'Price : $14'} />
-		</div>
-		<div class="description section">
-			<P
-				paragraph={'Introducing the Butter Chicken - a delicious and flavorful dish made with tender chicken cooked in a rich and creamy tomato-based sauce. It is seasoned with a blend of aromatic spices and served with fragrant basmati rice. Indulge in this classic Indian dish that is sure to satisfy your taste buds.'}
-			/>
-		</div>
-		<div class="type section">
-			<H3 heading={'Type: Main Course'} />
-		</div>
-		<div class="tag-section section">
-			<InnerH3 heading={'Tags'} />
-			<div class="tags-container">
-				<div class="tags">Continental</div>
-				<div class="tags">Low Sugar</div>
-				<div class="tags">Aroma</div>
-				<div class="tags">High Protein</div>
+		<div class="info">
+			<div class="title section">
+				<H2 heading={dishData.name} />
+			</div>
+			<div class="star-container section">
+				<Star starData={dishData.reviews.averageRating} />
+			</div>
+			<div class="price section">
+				<H3 heading={`Price : $${dishData.price}`} />
+			</div>
+			<div class="description section">
+				<P paragraph={dishData.description} />
+			</div>
+			<div class="type section">
+				<H3 heading={`Type: ${dishData.type}`} />
+			</div>
+			<div class="tag-section section">
+				<InnerH3 heading={'Tags'} />
+				<div class="tags-container">
+					{#each dishData.tags as item}
+						<div class="tags">{item}</div>
+					{/each}
+				</div>
+			</div>
+			<div class="deliverycook section">
+				<div class="content">
+					<P paragraph={`Delievery Time : ${dishData.deliveryTime} min`} />
+					<P paragraph={`Avergae Time To Cook : ${dishData.averageTimeToCook} min`} />
+					<P paragraph={`Fat Content : ${dishData.fatContent} g`} />
+					<P paragraph={`Protein Content : ${dishData.protein} g`} />
+				</div>
+				<div class="cook">
+					<img src={cook} alt="" />
+				</div>
 			</div>
 		</div>
-		<div class="deliverycook section">
-			<div class="content">
-				<P paragraph={'Delievery Time : 30 min'} />
-				<P paragraph={'Avergae Time To Cook : 15 min'} />
-				<P paragraph={'Fat Content : 14 g'} />
-				<P paragraph={'Protein Content : 20 g'} />
-			</div>
-			<div class="cook">
-				<img src={cook} alt="" />
-			</div>
-		</div>
-	</div>
-	<div class="options">
-		<H2 heading={'Toppings And Add-Ons'} />
+		<div class="options">
+			<H2 heading={'Toppings And Add-Ons'} />
 
-		<div class="topping-name">
-			<div class="topping-container">
-				<div class="topping">
-					<InnerH3 heading={'Sauce'} />
-					<div class="checkBoxes">
-						<div class="check">
-							<P paragraph={'Extra Vegies'} />
-							<input type="checkbox" checked={yes} />
+			<div class="topping-name">
+				<div class="topping-container">
+					{#each Object.entries(dishData.options) as [key, value]}
+						<div class="topping">
+							<InnerH3 heading={key} />
+							{#if value.length != 0}
+								<div class="checkBoxes">
+									{#each value as item}
+										<div class="check">
+											<P paragraph={item} />
+											<input type="checkbox" checked={yes} />
+										</div>
+									{/each}
+								</div>
+							{:else}
+								<P paragraph={`Sorry Extra ${key} Might Not Be Available !`} />
+							{/if}
 						</div>
-						<div class="check">
-							<P paragraph={'Extra Vegies'} />
-							<input type="checkbox" checked={yes} />
+					{/each}
+				</div>
+			</div>
+		</div>
+		<div class="ingredients">
+			<H2 heading={'Ingredients'} />
+			<div class="ingredient-container">
+				{#each Object.entries(dishData.ingredients) as [key, value]}
+					{#if value.length != 0}
+						<div class="item">
+							<InnerH3 heading={key} />
+
+							<!-- content here -->
+
+							{#each value as item}
+								<div class="herbs">
+									<div>
+										<H4 heading={item.name} />
+									</div>
+									<div class=" ing">
+										{item.description}
+									</div>
+
+									<div class="uses">
+										{#if item.uses}
+											{#each item.uses as use}
+												<P paragraph={use} />
+											{/each}
+										{/if}
+									</div>
+								</div>
+							{/each}
 						</div>
-						<div class="check">
-							<P paragraph={'Extra Vegies'} />
-							<input type="checkbox" checked={yes} />
+					{/if}
+				{/each}
+			</div>
+		</div>
+		<div class="supplements">
+			{#if dishData.supplements != null}
+				<div class="item-card">
+					<H2 heading={'Beverages'} />
+
+					<div class="beverages">
+						{#if dishData.supplements.beverages.length != 0}
+							{#each dishData.supplements.beverages as item}
+								<div class="item">
+									<H4 heading={item.name} />
+									<P paragraph={item.description} />
+								</div>
+							{/each}
+						{/if}
+					</div>
+				</div>
+				<div class="item-card">
+					<H2 heading={'Food Drinks'} />
+
+					<div class="beverages">
+						{#if dishData.supplements.foodDrinks.length != 0}
+							{#each dishData.supplements.foodDrinks as item}
+								<div class="item">
+									<H4 heading={item.name} />
+									<P paragraph={item.description} />
+								</div>
+							{/each}
+						{:else}
+							<H4 heading={'No Food Drinks Available With This Item'} />
+						{/if}
+					</div>
+				</div>
+			{/if}
+		</div>
+		<div class="reviews">
+			<!-- https://randomuser.me/api/portraits/men/75.jpg -->
+			<div class="review-section">
+				<H2 heading={'Customer Reviews'} />
+
+				<Carousel perPage="1" autoplay="5000" dots="false" controls="false" duration="2000">
+					{#each dishData.reviews.customerReviews as item}
+						<div class="quote">
+							<div class="quote-container">
+								<div>
+									<Star starData={item.rating} />
+								</div>
+								<div class="quote-content">
+									{item.review}
+								</div>
+
+								<div class="quote-auth"><P paragraph={item.date} /></div>
+								<div class="quote-auth">-{item.name}</div>
+							</div>
+							<div class="person-container">
+								<img
+									src={`https://source.unsplash.com/900x900/?potrait?img=${Math.floor(
+										Math.random() * 100
+									)}`}
+									alt=""
+									srcset=""
+								/>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="topping">
-					<InnerH3 heading={'Sauce'} />
-					<div class="checkBoxes">
-						<div class="check">
-							<P paragraph={'Extra Vegies'} />
-							<input type="checkbox" checked={yes} />
+					{/each}
+				</Carousel>
+			</div>
+		</div>
+		<div class="sale">
+			<div class="sale-outer">
+				<img src={sale} alt="" srcset="" />
+			</div>
+			{#if dishData.salesAndOffers.length != 0}
+				<Carousel perPage="1" autoplay="5000" dots="false" controls="false" duration="1000">
+					{#each dishData.salesAndOffers as item}
+						<div class="sale-title">
+							<H2 heading={item.title} />
+							<div class="sale-decription">
+								<P paragraph={item.description} />
+							</div>
+							<div class="date-info-sale">
+								<div class="Start">
+									<P paragraph={item.startDate} />
+								</div>
+								<div class="end">
+									<P paragraph={item.endDate} />
+								</div>
+							</div>
 						</div>
-					</div>
+					{/each}
+				</Carousel>
+			{:else}
+				<H4 heading={'No Current Offer On This Dish '} />
+			{/if}
+		</div>
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+
+		<div class="addreview">
+			<H2 heading={'Add Your Reviews'} />
+			<form class="content">
+				<label>
+					<InnerH3 heading={'Name'} />
+				</label>
+				<div class="search">
+					<input type="text" bind:value={user.name} />
 				</div>
-				<div class="topping">
-					<InnerH3 heading={'Sauce'} />
-					<div class="checkBoxes">
-						<div class="check">
-							<P paragraph={'Extra Vegies'} />
-							<input type="checkbox" checked={yes} />
-						</div>
-					</div>
+				<label><InnerH3 heading={'Email'} /></label>
+				<div class="search">
+					<input type="text" bind:value={user.email} />
 				</div>
-				<Button text={'Add To Cart'} />
-				<Button text={'Checkout Cart'} />
-			</div>
+				<label><InnerH3 heading={'Mobile'} /></label>
+				<div class="search">
+					<input type="text" bind:value={user.phone} />
+				</div>
+			</form>
 		</div>
 	</div>
-	<div class="ingredients">
-		<H2 heading={'Ingredients'} />
-		<div class="ingredient-container">
-			<div class="item">
-				<InnerH3 heading={'Herbs'} />
-				<div class="herbs">
-					<div>
-						<H4 heading={'Khmeli Suneli'} />
-					</div>
-					<div class=" ing">
-						This fragrant Georgian spice is mixed with fenugreek, marigold petals, coriander, black
-						pepper, dill, mint, and bay leaf. It has warm, bitter, nutty, and grassy flavors.
-					</div>
-					<div class="uses">
-						<H4 heading={'Uses'} />
-						<P paragraph={'Used in stews and meat dishes'} />
-						<P paragraph={'Adds flavor to roasted vegetables and bean soups'} />
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<InnerH3 heading={'Cheese'} />
-				<div class="cheese">
-					<div>
-						<H4 heading={'Khmeli Suneli'} />
-					</div>
-					<div class=" ing">
-						This fragrant Georgian spice is mixed with fenugreek, marigold petals, coriander, black
-						pepper, dill, mint, and bay leaf. It has warm, bitter, nutty, and grassy flavors.
-					</div>
-					<div class="uses">
-						<H4 heading={'Uses'} />
-						<P paragraph={'Used in stews and meat dishes'} />
-						<P paragraph={'Adds flavor to roasted vegetables and bean soups'} />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="supplements">
-		<div class="item-card">
-			<H2 heading={'Beverages'} />
-
-			<div class="beverages">
-				<div class="item">
-					<H4 heading={'Lemonade'} />
-					<P
-						paragraph={'A refreshing citrus drink made with freshly squeezed lemons and a hint of sweetness. Perfect for quenching your thirst.'}
-					/>
-				</div>
-				<div class="item">
-					<H4 heading={'Iced Tea'} />
-					<P
-						paragraph={'A refreshing citrus drink made with freshly squeezed lemons and a hint of sweetness. Perfect for quenching your thirst.'}
-					/>
-				</div>
-			</div>
-		</div>
-		<div class="item-card">
-			<H2 heading={'Food Drinks'} />
-
-			<div class="beverages">
-				<div class="item">
-					<H4 heading={'Lemonade'} />
-					<P
-						paragraph={'A refreshing citrus drink made with freshly squeezed lemons and a hint of sweetness. Perfect for quenching your thirst.'}
-					/>
-				</div>
-
-				<div class="item">
-					<H4 heading={'Iced Tea'} />
-					<P
-						paragraph={'A refreshing citrus drink made with freshly squeezed lemons and a hint of sweetness. Perfect for quenching your thirst.'}
-					/>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="reviews">
-		<!-- https://randomuser.me/api/portraits/men/75.jpg -->
-		<div class="review-section">
-			<H2 heading={'Customer Reviews'} />
-
-			<div class="quote">
-				<div class="quote-container">
-					<div>
-						<Star starData="4" />
-					</div>
-					<div class="quote-content">
-						Absolutely delicious! The perfect balance of flavors. The chicken was tender, and the
-						spiciness was just right.
-					</div>
-
-					<div class="quote-auth"><P paragraph={'Date -19 june'} /></div>
-					<div class="quote-auth">-John Doe</div>
-				</div>
-				<div class="person-container">
-					<img src={random} alt="" srcset="" />
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="sale">
-		<div class="sale-outer">
-			<img src={sale} alt="" srcset="" />
-		</div>
-		<div class="sale-title">
-			<H2 heading={'Happy Hour Special'} />
-			<div class="sale-decription">
-				<P paragraph={'Enjoy Discounted Price moterfuKSANfk'} />
-			</div>
-			<div class="date-info-sale">
-				<div class="Start">
-					<P paragraph={'Start 123kl'} />
-				</div>
-				<div class="end">
-					<P paragraph={'Start 123kl'} />
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- svelte-ignore a11y-label-has-associated-control -->
-
-	<div class="addreview">
-		<H2 heading={'Add Your Reviews'} />
-		<form class="content">
-			<label>
-				<InnerH3 heading={'Name'} />
-			</label>
-			<div class="search">
-				<input type="text" bind:value={user.name} />
-			</div>
-			<label><InnerH3 heading={'Email'} /></label>
-			<div class="search">
-				<input type="text" bind:value={user.email} />
-			</div>
-			<label><InnerH3 heading={'Mobile'} /></label>
-			<div class="search">
-				<input type="text" bind:value={user.phone} />
-			</div>
-		</form>
-	</div>
-</div>
+{/if}
 
 <style>
 	input[type='text'] {
@@ -262,6 +269,7 @@
 	.search {
 		position: relative;
 	}
+
 	.search::before {
 		content: '';
 		position: absolute;
@@ -297,12 +305,15 @@
 	.topping-container {
 		display: grid;
 		width: 100%;
-		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1rem;
 	}
 
 	.check {
+		width: 100%;
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 	.ingredient-container {
 		display: grid;
@@ -316,12 +327,10 @@
 	}
 	.person-container img {
 		width: 100%;
-		height: 100%;
+		height: 300px;
 		object-fit: cover;
 	}
-	.person-container {
-		grid-column: auto/ auto;
-	}
+
 	.quote {
 		display: grid;
 		border-top: 2px solid #dcca87;
@@ -398,6 +407,7 @@
 	}
 	.container {
 		display: grid;
+
 		grid-template-columns: repeat(8, 1fr);
 		gap: 1rem;
 	}
@@ -411,15 +421,16 @@
 	}
 	.info {
 		grid-area: 1/5/3/-1;
-
 	}
-	
+
 	.options {
 		grid-area: 3/5/3/-1;
 	}
 	.ingredients {
 		grid-area: 4/1/4/-1;
-		background-color: #000;
+		background-color: #242424;
+		border: 2px dotted #aaa;
+		padding: 1rem;
 	}
 	.supplements {
 		grid-column: span 8 / auto;
@@ -442,13 +453,17 @@
 		height: 100%;
 		object-fit: cover;
 	}
-	@media (max-width: 768px){
-		.container{
+	@media (max-width: 768px) {
+		.container {
 			display: flex;
 			flex-direction: column;
 		}
-		.topping-container{
+		.topping-container {
 			display: flex;
+			justify-content: space-between;
+		}
+		.person-container {
+			grid-column: span 3 / auto;
 		}
 	}
 </style>

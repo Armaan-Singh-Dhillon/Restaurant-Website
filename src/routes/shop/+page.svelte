@@ -1,88 +1,92 @@
 <script>
-	import H4 from './../../stylingComponents/H4.svelte';
+	import Button from './../../stylingComponents/Button.svelte';
 	import back from '../../lib/images/background/blog-inner.avif';
 	import InnerH1 from './../../stylingComponents/inner/innerH1.svelte';
 	import ShopBar from '../../components/shopBar.svelte';
 	import InnerH3 from './../../stylingComponents/inner/innerH3.svelte';
 	import Star from '../../stylingComponents/Star.svelte';
 	import H3 from '../../stylingComponents/H3.svelte';
-	import burger from '../../lib/images/dishes/burger.jpg';
 	import fadeScale from '../../stylingComponents/fadescale.js';
 	import { cubicInOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
 	import dishStore from '../../stores/dishes.js';
-	import isLoading from '../../stores/globalLoader.js'
-	
-	function showHandle(index) {
+	import isLoading from '../../stores/globalLoader.js';
 
+	function showHandle(index) {
 		items[index].show = !items[index].show;
 	}
 	let items = [];
-	let localLoading =true
+
+	let localLoading = true;
 	isLoading.set(true);
 	onMount(() => {
 		dishStore.subscribe((val) => {
 			items = val;
 		});
-		localLoading=false
-	
+		localLoading = false;
+
 		setTimeout(() => {
 			isLoading.set(false);
 		}, 2000);
 	});
 </script>
+
 {#if !localLoading}
 	<div class="back-container back">
-	<div class="back-head">
-		<InnerH1 heading={'Welcome To Our Shop'} />
-	</div>
-	<img src={back} alt="" srcset="" />
-</div>
-
-<div class="container">
-	<div class="sidebar">
-		<ShopBar />
-	</div>
-	
-	{#each items as item, index}
-		<div class="item">
-			<div
-				class="image-container"
-				on:mouseenter={() => showHandle(index)}
-				on:mouseleave={() => showHandle(index)}
-			>
-				{#if items[index].show}
-					<div
-						class="btn"
-						transition:fadeScale={{
-							duration: 1000,
-							easing: cubicInOut,
-							baseScale: 0.5
-						}}
-					>
-						Select Options
-					</div>
-				{/if}
-				<img src={`src/lib/images/dishes${item.image}.jpg`} alt="" />
-			</div>
-			<div>
-				<H3 heading={item.name} />
-			</div>
-			<div class="star-container">
-				<Star starData={item.reviews.averageRating} />
-			</div>
-			<div class="price">
-				<InnerH3 heading={`Price :$${item.price}`} />
-			</div>
+		<div class="back-head">
+			<InnerH1 heading={'Welcome To Our Shop'} />
 		</div>
-	{/each}
-</div>
+		<img src={back} alt="" srcset="" />
+	</div>
+
+	<div class="container">
+		<div class="sidebar">
+			<ShopBar />
+		</div>
+
+		{#each items as item, index}
+			<div class="item">
+				<div
+					class="image-container"
+					on:mouseenter={() => showHandle(index)}
+					on:mouseleave={() => showHandle(index)}
+				>
+					{#if items[index].show}
+						<div
+							class="btn"
+							transition:fadeScale={{
+								duration: 1000,
+								easing: cubicInOut,
+								baseScale: 0.5
+							}}
+						>  
+						    
+							Select Options
+						</div>
+					{/if}
+					<img src={`src/lib/images/dishes${item.image}.jpg`} alt="" />
+				</div>
+				<a href={`/shop/${item.id}`}>
+					<div>
+						<H3 heading={item.name} />
+					</div>
+				</a>
+
+				<div class="star-container">
+					<Star starData={item.reviews.averageRating} />
+				</div>
+				<div class="price">
+					<InnerH3 heading={`Price :$${item.price}`} />
+				</div>
+			</div>
+		{/each}
+	</div>
 {/if}
 
-
-
 <style>
-	
+	a {
+		text-decoration: none;
+	}
 	.back img {
 		height: 400px;
 	}
@@ -105,7 +109,7 @@
 		object-fit: cover;
 		opacity: 0.8;
 	}
-	
+
 	.back-container {
 		position: relative;
 	}
@@ -117,7 +121,6 @@
 		width: 100%;
 		transform: translateY(-50%);
 	}
-	
 
 	.btn {
 		position: absolute;
@@ -146,7 +149,7 @@
 		gap: 1vw;
 		margin: 8rem 0;
 	}
-	
+
 	.sidebar {
 		grid-row: span 3 / auto;
 		grid-column: span 2 / auto;

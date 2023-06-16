@@ -11,6 +11,6 @@
 		font-family: 'Noto Serif Georgian', serif;
 		font-weight: 300;
 		color: #dcca87;
-		font-size: 22px;
+		font-size: calc(1em + 1vw);
 	}
 </style>

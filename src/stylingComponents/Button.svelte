@@ -14,6 +14,8 @@
         color: white;
         z-index: 2;
         position: relative;
+		border-top: 2px solid #dcca87;
+		border-bottom: 2px solid #dcca87;
 
     }
    .btn::before {
@@ -25,7 +27,7 @@
 		right: 0;
 		bottom: 0;
 		width: 0;
-		transition: all ease-out 0.4s;
+		transition: all ease-in-out 0.5s;
 	}
 	.btn:hover::before {
 		left: 0;

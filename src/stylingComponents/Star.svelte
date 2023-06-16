@@ -24,9 +24,8 @@
         display: flex;
     }
 	.star {
-		width: 20px;
-		height: 25px;
-        margin-right:10px ;
+		width: 5%;
+		height: 25px;  
 		background-repeat: no-repeat;
         background-size: contain;
 	}

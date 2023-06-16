@@ -28,7 +28,7 @@
 		dishData = { id: docSnap.id, ...docSnap.data() };
 		setTimeout(() => {
 			isLoading.set(false);
-		}, 2000);
+		}, 1000);
 	});
 
 	let user = {

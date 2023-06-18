@@ -10,27 +10,27 @@
 	import blogStore from '../stores/blogStore.js';
 	import dishStore from '../stores/dishes.js';
 
-	isLoading.set(true);
+	// isLoading.set(true);
 
-	onMount(async () => {
-		let blogData = [];
-		let productData = [];
-		const querySnapshot1 = await getDocs(collection(db, 'Blog'));
-		querySnapshot1.forEach((doc) => {
-			blogData = [...blogData, { id: doc.id, ...doc.data() }];
-		});
-		blogStore.set(blogData);
+	// onMount(async () => {
+	// 	let blogData = [];
+	// 	let productData = [];
+	// 	const querySnapshot1 = await getDocs(collection(db, 'Blog'));
+	// 	querySnapshot1.forEach((doc) => {
+	// 		blogData = [...blogData, { id: doc.id, ...doc.data() }];
+	// 	});
+	// 	blogStore.set(blogData);
 		
-		const querySnapshot2 = await getDocs(collection(db, 'dishes'));
-		querySnapshot2.forEach((doc) => {
-			productData = [...productData, { id: doc.id, show: false, ...doc.data() }];
-		});
-		dishStore.set(productData);
+	// 	const querySnapshot2 = await getDocs(collection(db, 'dishes'));
+	// 	querySnapshot2.forEach((doc) => {
+	// 		productData = [...productData, { id: doc.id, show: false, ...doc.data() }];
+	// 	});
+	// 	dishStore.set(productData);
 
-		setTimeout(() => {
-			isLoading.set(false);
-		}, 1000);
-	});
+	// 	setTimeout(() => {
+	// 		isLoading.set(false);
+	// 	}, 1000);
+	// });
 </script>
 
 <div class="main">

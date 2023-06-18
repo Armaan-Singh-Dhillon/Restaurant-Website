@@ -1,31 +1,34 @@
 <script>
-	import H1 from '../stylingComponents/H1.svelte';
-	import H2 from '../stylingComponents/H2.svelte';
+	import H2 from './../stylingComponents/H2.svelte';
 	import H4 from '../stylingComponents/H4.svelte';
 	import P from '../stylingComponents/P.svelte';
 	import Button from '../stylingComponents/Button.svelte';
 	import H5 from '../stylingComponents/H5.svelte';
-	import scissor from '../lib/images/logos/scissors.svg'
+	import scissor from '../lib/images/logos/scissors.svg';
 </script>
 
 <div class="footer">
 	<div class="subscribe">
 		<div class="sticker">
-			<img src={scissor} alt="">
-
+			<img src={scissor} alt="" />
 		</div>
-		<div>
-			<H4 heading={'Newsletter'} />
-		</div>
-		<div>
-			<H1 heading={'Subscribe To Our Newsletter'} />
-		</div>
-		<div>
-			<P paragraph={'and never miss updates'} />
-		</div>
-		<div class="inbox">
-			<input type="text" />
-			<Button text={'Subscribe'} />
+		<div class="modifier" />
+		<div class="subscription">
+			<div>
+				<H4 heading={'Newsletter'} />
+			</div>
+			<div>
+				<H2 heading={'Subscribe To Our Newsletter'} />
+			</div>
+			<div>
+				<P paragraph={'and never miss updates'} />
+			</div>
+			<div class="inbox">
+				<div class="text-box">
+					<input type="text" placeholder="Enter Your Email" />
+				</div>
+				<Button text={'Subscribe'} />
+			</div>
 		</div>
 	</div>
 	<div class="middle">
@@ -56,57 +59,79 @@
 </div>
 
 <style>
-	.sticker{
+	.inbox {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.text-box{
+		width: 50%;
+		position: relative;
+
+	}
+	input {
+		width: 100%;
+		height: 100%;
+		padding: 8px;
+		background-color: #242424;
+		border: none;
+	}
+
+	.text-box::before {
+		content: '';
 		position: absolute;
-		top: -20%;
-		left: 10%;
+		background-color: #dcca87;
+		top: 95%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: 0.4s all;
 	}
-	.footer {
+	.text-box:hover::before {
+		transform: scaleX(1);
+	}
+	input:focus {
+		outline: none;
+	}
+	.section {
 		display: grid;
-		grid-template-columns: 0.1fr 0.1fr 2fr 0.1fr 0.1fr;
-		grid-template-rows: repeat(8, 100px);
-        padding-top:8rem ;
-		background-repeat: no-repeat;
-		background-position: cover;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		gap: 1rem;
+		justify-items: center;
 	}
-	.subscribe {
-		grid-area: 1/3/5/-3;
-		z-index: 1;
-		border: 1px solid #dcca87;
-		background-color: black;
+
+	.footer {
+		background-color: #000;
+	}
+	.subscription {
+		grid-area: 3/1/-1/-1;
+		z-index: 8;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
 		align-items: center;
-		position: relative;
 	}
-	.middle {
-		grid-area: 4/2/-1/-2;
-
-		color: white;
-		
-
+	.modifier {
+		border: 2px solid #dcca87;
+		grid-area: 2/1/-1/-1;
+	}
+	.subscribe {
 		display: grid;
-		grid-template-rows: repeat(4, 1fr);
-		justify-items: center;
+		grid-template-columns: repeat(8, 1fr);
+		grid-template-rows: repeat(8, minmax(20px, 80px));
 	}
-	.section {
-		width: 80%;
-		grid-row: 2/-1;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 2rem;
-		justify-items: center;
+	.sticker {
+		grid-area: 1/2/3/2;
 	}
-	.inbox {
-		width: 60%;
-		display: grid;
-		grid-template-columns: 0.8fr 0.2fr;
-		gap: 1rem;
-	}
-	input {
+	img {
 		width: 100%;
-		background-color: #000;
-		border: 1px solid whitesmoke;
+		height: 100%;
+	}
+	@media (max-width: 325px) {
+		.sticker {
+			grid-area: 1/2/3/5;
+		}
 	}
 </style>

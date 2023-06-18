@@ -1,135 +1,258 @@
 <script>
-	import Search from '../lib/images/logos/search.svg';
+	import Button from './../stylingComponents/Button.svelte';
+	import fadeScale from '../stylingComponents/fadescale';
+	import search from '../lib/images/logos/search.svg';
+	import cross from '../lib/images/logos/cross.svg';
 	import bars from '../lib/images/logos/bars.svg';
-
-	let toggleState = false;
-
-	const toggle = () => {
-		toggleState = !toggleState;
-		console.log(toggleState);
+	import cart from '../lib/images/logos/cart.svg';
+	import { slide } from 'svelte/transition';
+	import { cubicInOut } from 'svelte/easing';
+	import { backInOut, linear } from 'svelte/easing';
+	let show = false;
+	let visibility = false;
+	let sideVisibility = false;
+	let options = { duration: 500, easing: linear };
+	const stateChanger = () => {
+		show = !show;
+	};
+	const visibilitychanger = () => {
+		visibility = !visibility;
+	};
+	const sidevisibilitychanger = () => {
+		sideVisibility = !sideVisibility;
 	};
 </script>
 
-<div class={`overlay ${toggleState ? '' : 'none'}`}>
-	<div class="middle">
-		<div>Home</div>
-		<div>Pages</div>
-		
-		<div>Contact Us</div>
-		<div>Blog</div>
-	</div>
-	<img src={bars} alt="" on:click={toggle} />
-</div>
-
 <div class="navbar">
-	<div class="left">
-		<h1>Wine And Dine</h1>
+	<div class="section-1 heading">Wine And Dine</div>
+
+	<div class="section-2">
+		<div class="tags">Home</div>
+		<div
+			on:mouseenter={visibilitychanger}
+			on:mouseleave={visibilitychanger}
+			class="drop-container tags"
+		>
+			Pages
+
+			{#if visibility}
+				<div
+					class="dropdowns"
+					transition:fadeScale={{
+						duration: 1000,
+						easing: cubicInOut,
+						baseScale: 0.5
+					}}
+				>
+					<div class="tags">Menu</div>
+					<div class="tags">Shop</div>
+					<div class="tags">Blog</div>
+					<div class="tags">Booking</div>
+				</div>
+			{/if}
+		</div>
+		<div class="tags">Menu</div>
+		<div class="tags">Shop</div>
+		<div class="tags">Blog</div>
+		<div class="tags">Booking</div>
 	</div>
-	<div class="middle-container">
-		<div class="middle">
-			<div>Home</div>
-			<a href="/menu">
-				<div>Menu</div>
-			</a>
-			<div >
-				<a href="/shop">shop</a></div>
-			<div>
-				<a href="/blog">Blog</a>
+	{#if show}
+		<div
+			class=" side"
+			transition:fadeScale={{
+				duration: 1000,
+				easing: cubicInOut,
+				baseScale: 0.5
+			}}
+		>
+			<div class="st-containers cross">
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img src={cross} alt="" on:click={stateChanger} />
+			</div>
+			<div class="tags">Home</div>
+			<div
+				on:mouseenter={sidevisibilitychanger}
+				on:mouseleave={sidevisibilitychanger}
+				class="side-drop-container"
+			>
+				<div class="page-arrow">Pages</div>
+
+				{#if sideVisibility}
+					<div class="sidedowns" transition:slide={{ ...options }}>
+						<div class="tags">Menu</div>
+						<div class="tags">Shop</div>
+						<div class="tags">Blog</div>
+						<div class="tags">Booking</div>
+					</div>
+				{/if}
+			</div>
+			<div class="tags">Menu</div>
+			<div class="tags">Shop</div>
+			<div class="tags">Blog</div>
+			<div class="tags">Booking</div>
+		</div>
+	{/if}
+
+	<div class="section-3">
+		<div class="stickers">
+			<div class="st-containers">
+				<img src={search} alt="" srcset="" />
+			</div>
+			<div class="st-containers">
+				<img src={cart} alt="" srcset="" />
+			</div>
+			<div class="st-containers bars">
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img src={bars} alt="" srcset="" on:click={stateChanger} />
 			</div>
 		</div>
-	</div>
-
-	<div class="right">
-		<input type="text" placeholder="search website" class="search" />
-		<div class="stickers">
-			<img src={Search} alt="" />
-
-			<!-- <img src={bars} alt="" on:click={toggle} /> -->
+		<div class="button">
+			<Button text={'Book Table'} />
 		</div>
 	</div>
 </div>
 
 <style>
-	.navbar {
-		color: #dcca87;
+	.page-arrow {
+		display: flex;
+	}
+	.sidedowns {
+		padding: 1rem;
+		border: 2px dotted #aaa;
+		background-color: #242424;
+	}
+
+
+	.tags {
+		position: relative;
+		cursor: pointer;
+	}
+	.tags::before {
+		content: '';
+		position: absolute;
+		background-color: #dcca87;
+		top: 99%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform: scaleX(0);
+		transition: all 0.5s ease-in-out;
+		transform-origin: left;
+	}
+	.tags:hover::before {
+		transform: scaleX(1);
+	}
+	
+
+	.drop-container {
+		position: relative;
+		display: flex;
+	}
+
+	.dropdowns {
+		position: absolute;
+		left: 0;
+		top: 150%;
+		width: 500%;
 		display: grid;
-		grid-template-columns: 0.1fr 0.4fr 1fr 0.4fr 0.1fr;
+		border: 2px solid #dcca87;
+
 		gap: 2rem;
-		font-size: calc(0.4em + 1vw);
-		align-items: center;
-		font-family: 'Poppins', sans-serif;
+		background-color: #000;
+		z-index: 10;
+		padding: 1rem;
 	}
-	.middle {
+	.cross {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 20;
+	}
+	.bars {
+		cursor: pointer;
+	}
+	.navbar {
+		color: #fff;
+		justify-content: space-between;
 		display: flex;
-		width: 60%;
-		justify-content: space-evenly;
+		position: relative;
 	}
-	.left {
-		grid-column: 2/3;
-		font-family: 'Cormorant Upright', serif;
-		color: white;
-	}
-	.left h1 {
-		margin: 0;
-		padding: 0;
-	}
-	.search {
-		background: transparent;
-		border: none;
-		width: 80%;
-		padding: 0.6rem;
+	.side {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: #000;
+		right: 50%;
+		z-index: 10;
 		background-color: black;
-		color: #e4e0e0;
-		font-size: calc(0.2em + 1vw);
+		display: grid;
+		gap: 2rem;
+		font-family: 'Open Sans', sans-serif;
+		font-size: calc(0.8em + 1vw);
 	}
-	.middle-container {
+
+	.heading {
+		font-family: 'Cormorant Upright', serif;
+		font-size: calc(1.5em + 1vw);
+		display: flex;
+		align-items: center;
+		flex: 0.35;
+	}
+	.st-containers img {
+		width: 100%;
+	}
+	.st-containers {
+		width: calc(0.5em + 1vw);
+	}
+
+	.section-2 {
+		flex: 1;
+		font-family: 'Open Sans', sans-serif;
+		font-size: calc(0.25em + 1vw);
 		display: flex;
 		justify-content: space-evenly;
-	}
-	.right {
-		display: flex;
 		align-items: center;
 	}
 	.stickers {
-		width: calc(2em + 1vw);
+		display: flex;
+		flex: 1;
+		justify-content: space-evenly;
+		align-items: center;
+	}
+	.button {
+		flex: 1;
+	}
+	.bars {
+		display: none;
+	}
+	.section-3 {
+		flex: 0.3;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
-	.stickers img {
-		width: 40%;
-	}
-
-	@media only screen and (max-width: 1100px) {
-		.navbar {
-			grid-template-columns: 0.2fr 0.8fr 0.8fr 0.2fr;
-			gap: 1rem;
-			justify-items: center;
+	@media (max-width: 1000px) {
+		.section-3 {
+			flex: 0.1;
 		}
-		.right {
-			grid-area: 1/3/-1/-1;
-			display: flex;
-		}
-		.right input {
-			width: 50%;
-		}
-		.middle {
+		.button {
 			display: none;
 		}
 	}
-	.none {
-		display: none;
+	@media (max-width: 600px) {
+		.bars {
+			display: block;
+		}
+		.section-3 {
+			flex: 0.4;
+		}
+		.section-1 {
+			flex: 0.6;
+		}
+		.section-2 {
+			display: none;
+			flex: 0;
+		}
 	}
-	.overlay {
-		position: absolute;
-		width: 90vw;
-		height: 100vh;
-		border: 2px solid white;
-		left: 50%;
-		transform: translateX(-50%);
-		color: #dcca87;
-		background-color: black;
-	}
-    a{
-        text-decoration: none;
-        color: #dcca87;
-    }
 </style>

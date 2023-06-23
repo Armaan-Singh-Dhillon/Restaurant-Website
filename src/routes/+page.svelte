@@ -1,4 +1,5 @@
 <script>
+	import HIstoryBar from './../components/HIstoryBar.svelte';
 	import Menu from './../components/Menu.svelte';
 
 	import Hero from '../components/Hero.svelte';
@@ -10,9 +11,9 @@
 
 <Hero />
 <Backeffectmenu />
+<HIstoryBar/>
 <Chefsword />
 <Menu />
-<MenuSlider/>
 <Laurel />
 
 <style>

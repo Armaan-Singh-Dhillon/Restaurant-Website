@@ -11,6 +11,7 @@
 	.paragraph {
 		color: #aaa;
 		font-size: calc(0.1em + 1vw);
-		font-family: 'Poppins', sans-serif;
+		font-family: 'Open Sans', sans-serif;
+
 	}
 </style>

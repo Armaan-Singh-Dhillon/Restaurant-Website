@@ -24,7 +24,11 @@
 </script>
 
 <div class="navbar">
-	<div class="section-1 heading">Wine And Dine</div>
+	<div class="section-1">
+		<a href="/">
+			<div class="heading">Wine And Dine</div>
+		</a>
+	</div>
 
 	<div class="section-2">
 		<div class="tags">Home</div>
@@ -44,17 +48,33 @@
 						baseScale: 0.5
 					}}
 				>
-					<div class="tags">Menu</div>
-					<div class="tags">Shop</div>
-					<div class="tags">Blog</div>
-					<div class="tags">Booking</div>
+					<div class="tags">
+						<a href="/more/faq"> FAQ </a>
+					</div>
+					<div class="tags">
+						<a href="/shop">Shop</a>
+					</div>
+					<div class="tags">
+						<a href="/blog"> Blog </a>
+					</div>
+					<div class="tags">
+						<a href="/booking">Booking</a>
+					</div>
 				</div>
 			{/if}
 		</div>
-		<div class="tags">Menu</div>
-		<div class="tags">Shop</div>
-		<div class="tags">Blog</div>
-		<div class="tags">Booking</div>
+		<div class="tags">
+			<a href="/menu"> Menu </a>
+		</div>
+		<div class="tags">
+			<a href="/shop">Shop</a>
+		</div>
+		<div class="tags">
+			<a href="/blog"> Blog </a>
+		</div>
+		<div class="tags">
+			<a href="/booking">Booking</a>
+		</div>
 	</div>
 	{#if show}
 		<div
@@ -79,17 +99,33 @@
 
 				{#if sideVisibility}
 					<div class="sidedowns" transition:slide={{ ...options }}>
-						<div class="tags">Menu</div>
-						<div class="tags">Shop</div>
-						<div class="tags">Blog</div>
-						<div class="tags">Booking</div>
+						<div class="tags">
+							<a href="/menu"> Menu </a>
+						</div>
+						<div class="tags">
+							<a href="/shop">Shop</a>
+						</div>
+						<div class="tags">
+							<a href="/blog"> Blog </a>
+						</div>
+						<div class="tags">
+							<a href="/booking">Booking</a>
+						</div>
 					</div>
 				{/if}
 			</div>
-			<div class="tags">Menu</div>
-			<div class="tags">Shop</div>
-			<div class="tags">Blog</div>
-			<div class="tags">Booking</div>
+			<div class="tags">
+				<a href="/menu"> Menu </a>
+			</div>
+			<div class="tags">
+				<a href="/shop">Shop</a>
+			</div>
+			<div class="tags">
+				<a href="/blog"> Blog </a>
+			</div>
+			<div class="tags">
+				<a href="/booking">Booking</a>
+			</div>
 		</div>
 	{/if}
 
@@ -113,6 +149,10 @@
 </div>
 
 <style>
+	a {
+		text-decoration: none;
+		color: white;
+	}
 	.page-arrow {
 		display: flex;
 	}
@@ -121,7 +161,6 @@
 		border: 2px dotted #aaa;
 		background-color: #242424;
 	}
-
 
 	.tags {
 		position: relative;
@@ -142,7 +181,6 @@
 	.tags:hover::before {
 		transform: scaleX(1);
 	}
-	
 
 	.drop-container {
 		position: relative;

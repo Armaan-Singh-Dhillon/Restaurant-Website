@@ -19,22 +19,18 @@
 		<div class="read">Read More</div>
 	</div>
 	<div class="two" value="back2" on:mouseenter={(e) => changer(e)}>
-		<div class="one" value="back1" on:mouseenter={(e) => changer(e)}>
-			<InnerH1 heading={'Main Cousrse'} />
-			<div class="show">
-				<P paragraph={'Lorem ipsum dolor sit amet, consecteturadipiscing elit auctor sit .'} />
-			</div>
-			<div class="read">Read More</div>
+		<InnerH1 heading={'Main Cousrse'} />
+		<div class="show">
+			<P paragraph={'Lorem ipsum dolor sit amet, consecteturadipiscing elit auctor sit .'} />
 		</div>
+		<div class="read">Read More</div>
 	</div>
 	<div class="three" value="back3" on:mouseenter={(e) => changer(e)}>
-		<div class="one" value="back1" on:mouseenter={(e) => changer(e)}>
-			<InnerH1 heading={'Best Dessert'} />
-			<div class="show">
-				<P paragraph={'Lorem ipsum dolor sit amet, consecteturadipiscing elit auctor sit .'} />
-			</div>
-			<div class="read">Read More</div>
+		<InnerH1 heading={'Best Dessert'} />
+		<div class="show">
+			<P paragraph={'Lorem ipsum dolor sit amet, consecteturadipiscing elit auctor sit .'} />
 		</div>
+		<div class="read">Read More</div>
 	</div>
 </div>
 
@@ -44,12 +40,10 @@
 		height: 800px;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		position: relative;
-
 	}
 	.back1 {
 		background-image: url(../lib/images/background/02-min-scaled.jpg);
 		background-size: cover;
-
 	}
 
 	.back2 {
@@ -59,7 +53,6 @@
 	.back3 {
 		background-image: url(../lib/images/background/03-min-scaled.jpg);
 		background-size: cover;
-
 	}
 	.one {
 		transition: all 0.4s ease-in-out;

@@ -31,7 +31,9 @@
 	</div>
 
 	<div class="section-2">
-		<div class="tags">Home</div>
+		<div class="tags">
+			<a href="/"> Home </a>
+		</div>
 		<div
 			on:mouseenter={visibilitychanger}
 			on:mouseleave={visibilitychanger}
@@ -50,6 +52,9 @@
 				>
 					<div class="tags">
 						<a href="/more/faq"> FAQ </a>
+					</div>
+					<div class="tags">
+						<a href="/more/history"> History </a>
 					</div>
 					<div class="tags">
 						<a href="/shop">Shop</a>

@@ -14,48 +14,16 @@
 <div class="container">
 	<div class="hero">
 		<div class="rotate">
-			<Carousel autoplay="8000" perPage="1" dots="false" controls="false" duration="600">
-				<div class="intro inner-rotate">
-					<div class="heading-container">
-						<H4 heading={'Chase The New Flavour'} />
-					</div>
-					<HeadingMain heading={'Food That Surprise You'} />
-					<P
-						paragraph={'As you step into the elegant and contemporary space, you are immediately greeted by a warm and inviting ambiance. The meticulously designed interior, adorned with exquisite artwork and soft lighting, creates an intimate atmosphere that sets the stage for an unforgettable evening.'}
-					/>
-					<Button text={'Explore Menu'} />
-				</div>
-				<div class="intro inner-rotate">
-					<div class="heading-container">
-						<H4 heading={'Chase The New Flavour'} />
-					</div>
-					<HeadingMain heading={'Love The Original Taste'} />
-					<P
-						paragraph={'With a focus on seasonal and sustainable produce, each dish bursts with vibrant flavors and textures, creating a symphony of tastes on the palate. The menu features a harmonious blend of classic and contemporary dishes, all expertly executed to perfection.'}
-					/>
-					<Button text={'Explore Menu'} />
-				</div>
-				<div class="intro inner-rotate">
-					<div class="heading-container">
-						<H4 heading={'Quality Served Timely'} />
-					</div>
-					<HeadingMain heading={'Food That Surprise You'} />
-					<P
-						paragraph={'Whether you prefer a full-bodied red wine to accompany your perfectly cooked steak or a refreshing artisanal cocktail to start your evening, our knowledgeable staff will guide you through the extensive beverage menu, ensuring a seamless pairing with your chosen dishes. '}
-					/>
-					<Button text={'Explore Menu'} />
-				</div>
-			</Carousel>
-			<!-- <div class="intro inner-rotate">
+			<div class="intro">
 				<div class="heading-container">
-					<H4 heading={'Chase The New Flavour'} />
+					<H4 heading={'Quality Served Timely'} />
 				</div>
 				<HeadingMain heading={'Food That Surprise You'} />
 				<P
-					paragraph={'Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus'}
+					paragraph={'Whether you prefer a full-bodied red wine to accompany your perfectly cooked steak or a refreshing artisanal cocktail to start your evening, our knowledgeable staff will guide you through the extensive beverage menu, ensuring a seamless pairing with your chosen dishes. '}
 				/>
 				<Button text={'Explore Menu'} />
-			</div> -->
+			</div>
 		</div>
 
 		<div class="image-container">

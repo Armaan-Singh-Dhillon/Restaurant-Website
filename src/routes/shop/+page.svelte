@@ -59,12 +59,11 @@
 								easing: cubicInOut,
 								baseScale: 0.5
 							}}
-						>  
-						    
+						>
 							Select Options
 						</div>
 					{/if}
-					<img src={`src/lib/images/dishes${item.image}.jpg`} alt="" />
+					<img src={item.image} alt="" />
 				</div>
 				<a href={`/shop/${item.id}`}>
 					<div>

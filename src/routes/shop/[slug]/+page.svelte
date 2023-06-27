@@ -43,7 +43,7 @@
 {:else}
 	<div class="container">
 		<div class="image-container">
-			<img src={`../src/lib/images/dishes${dishData.image}.jpg`} alt="" srcset="" />
+			<img src={dishData.image} alt="" srcset="" />
 		</div>
 		<div class="info">
 			<div class="title section">

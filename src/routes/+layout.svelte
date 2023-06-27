@@ -9,28 +9,29 @@
 	import db from '../firebaseConfig.js';
 	import blogStore from '../stores/blogStore.js';
 	import dishStore from '../stores/dishes.js';
+	import BackToTop from '../components/backToTop.svelte';
 
-	// isLoading.set(true);
+	isLoading.set(false);
 
-	// onMount(async () => {
-	// 	let blogData = [];
-	// 	let productData = [];
-	// 	const querySnapshot1 = await getDocs(collection(db, 'Blog'));
-	// 	querySnapshot1.forEach((doc) => {
-	// 		blogData = [...blogData, { id: doc.id, ...doc.data() }];
-	// 	});
-	// 	blogStore.set(blogData);
-		
-	// 	const querySnapshot2 = await getDocs(collection(db, 'dishes'));
-	// 	querySnapshot2.forEach((doc) => {
-	// 		productData = [...productData, { id: doc.id, show: false, ...doc.data() }];
-	// 	});
-	// 	dishStore.set(productData);
+	onMount(async () => {
+		let blogData = [];
+		let productData = [];
+		const querySnapshot1 = await getDocs(collection(db, 'Blog'));
+		querySnapshot1.forEach((doc) => {
+			blogData = [...blogData, { id: doc.id, ...doc.data() }];
+		});
+		blogStore.set(blogData);
 
-	// 	setTimeout(() => {
-	// 		isLoading.set(false);
-	// 	}, 1000);
-	// });
+		const querySnapshot2 = await getDocs(collection(db, 'dishes'));
+		querySnapshot2.forEach((doc) => {
+			productData = [...productData, { id: doc.id, show: false, ...doc.data() }];
+		});
+		dishStore.set(productData);
+
+		setTimeout(() => {
+			isLoading.set(false);
+		}, 1000);
+	});
 </script>
 
 <div class="main">
@@ -49,6 +50,7 @@
 		<div class="main">
 			<slot />
 		</div>
+		<BackToTop />
 		<Footer />
 	</div>
 </div>

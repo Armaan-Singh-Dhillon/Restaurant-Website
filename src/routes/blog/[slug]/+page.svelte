@@ -1,10 +1,7 @@
 <script>
 	import H1 from './../../../stylingComponents/H1.svelte';
-	import H2 from './../../../stylingComponents/H2.svelte';
 	import Sidebar from './../../../components/Sidebar.svelte';
-	import InnerH3 from './../../../stylingComponents/inner/innerH3.svelte';
 	import InnerH1 from './../../../stylingComponents/inner/innerH1.svelte';
-	import test from '../../../lib/images/blogs/blog-test.jpg';
 	import header from '../../../lib/images/background/blog-inner.avif';
 	import user from '../../../lib/images/logos/user.svg';
 	import calendar from '../../../lib/images/logos/calendar.svg';
@@ -14,7 +11,7 @@
 	import { doc, getDoc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 	import db from '../../../firebaseConfig.js';
-	import isLoading from '../../../stores/globalLoader.js'
+	import isLoading from '../../../stores/globalLoader.js';
 
 	export let data;
 	let blogdata = {};
@@ -23,7 +20,9 @@
 		const docRef = doc(db, 'Blog', data.slug);
 		const docSnap = await getDoc(docRef);
 		blogdata = { id: docSnap.id, ...docSnap.data() };
-		setTimeout(()=>{isLoading.set(false)},2000)
+		setTimeout(() => {
+			isLoading.set(false);
+		}, 2000);
 	});
 </script>
 
@@ -39,7 +38,7 @@
 	<div class="container">
 		<div class="content">
 			<div class="image-container">
-				<img src={`../${blogdata.image1}`} alt="" />
+				<img src={blogdata.image1} alt="" />
 			</div>
 			<div class="nameline">
 				<div class="nameline-element">
@@ -93,7 +92,7 @@
 					Your browser does not support the video tag.
 				</video>
 			</div>
-			<P paragraph={blogdata.videopara}/>
+			<P paragraph={blogdata.videopara} />
 
 			<div class="quote">
 				<div class="quote-image-container">
@@ -106,10 +105,8 @@
 					<div class="quote-auth">-{blogdata.writer.Postedby}</div>
 				</div>
 			</div>
-			<P
-				paragraph={blogdata.outropara}
-			/>
-			
+			<P paragraph={blogdata.outropara} />
+
 			<div class="main-heading">{blogdata.outroTitle}</div>
 			<div class="points">
 				<div class="point-container">
@@ -117,9 +114,7 @@
 						<img src={hex} alt="" />
 					</div>
 					<div class="point-content">
-						<P
-							paragraph={blogdata.pointsoutro.point1}
-						/>
+						<P paragraph={blogdata.pointsoutro.point1} />
 					</div>
 				</div>
 				<div class="point-container">
@@ -127,9 +122,7 @@
 						<img src={hex} alt="" />
 					</div>
 					<div class="point-content">
-						<P
-							paragraph={blogdata.pointsoutro.point2}
-						/>
+						<P paragraph={blogdata.pointsoutro.point2} />
 					</div>
 				</div>
 
@@ -138,9 +131,7 @@
 						<img src={hex} alt="" />
 					</div>
 					<div class="point-content">
-						<P
-							paragraph={blogdata.pointsoutro.point3}
-						/>
+						<P paragraph={blogdata.pointsoutro.point3} />
 					</div>
 				</div>
 			</div>
@@ -154,7 +145,6 @@
 					</div>
 				</div>
 			</div>
-		
 		</div>
 
 		<div class="sidebar">

@@ -1,12 +1,9 @@
 <script>
-	import HIstoryBar from './../../../components/HIstoryBar.svelte';
 	import { slide } from 'svelte/transition';
 	import InnerH3 from './../../../stylingComponents/inner/innerH3.svelte';
 	import InnerH1 from './../../../stylingComponents/inner/innerH1.svelte';
-	import H1 from './../../../stylingComponents/H1.svelte';
 	import back from '../../../lib/images/background/01-min-scaled.jpg';
 	import shake from '../../../lib/images/faq/shake.jfif';
-	import P from '../../../stylingComponents/P.svelte';
 
 	const data = [
 		{
@@ -41,13 +38,9 @@
 		}
 	];
 	function showHandle(index) {
-    
-       
 		data[index].show = !data[index].show;
 	}
-</script> 
-
-<HIstoryBar/>
+</script>
 
 <div class="faq">
 	<div class="image-container">
@@ -69,9 +62,7 @@
 					<InnerH3 heading={item.question} />
 					{#if item.show}
 						<div transition:slide={{ duration: 500, axis: 'y' }} class="para">
-							<P
-								paragraph={item.answer}
-							/>
+							{item.answer}
 						</div>
 					{/if}
 				</div>
@@ -81,14 +72,17 @@
 </div>
 
 <style>
-    .para{
-        margin: 1rem 0;
-    }
+	.para {
+		margin: 1rem 0;
+		color: #aaa;
+		font-size: calc(0.5em + 1vw);
+		font-family: 'Open Sans', sans-serif;
+	}
 	.card-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-
+		cursor: pointer;
 	}
 	.card {
 		padding: 1rem;
@@ -104,8 +98,7 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1rem;
-        margin: 6rem 0;
-
+		margin: 6rem 0;
 	}
 	.title {
 		position: absolute;
@@ -126,7 +119,7 @@
 	}
 	.hero img {
 		width: 100%;
-        height: 45vw;
+		height: 45vw;
 		object-fit: cover;
 	}
 </style>

@@ -7,7 +7,7 @@
 	import H1 from '../stylingComponents/H1.svelte';
 	import H3 from '../stylingComponents/H3.svelte';
 	import P from '../stylingComponents/P.svelte';
-	import pancakes from '../lib/images/background/cusines/pancakes.jpg';
+	import pancakes from '../lib/images/background/cusines/pexels-ash-376464.jpg';
 	import W from '../lib/images/logos/W.svg';
 </script>
 
@@ -23,7 +23,9 @@
 					</div>
 					<div class="paragraph">
 						<H3 heading={'Rising Star'} />
-						<P paragraph={'Lorem ipsum dolor sitamet, consectetur.'} />
+						<P
+							paragraph={' We are thrilled to be recognized as a Rising Star in the culinary world. This prestigious award celebrates our dedication to innovation, creativity, and pushing the boundaries of gastronomy. Join us on a journey of culinary discovery as our talented team '}
+						/>
 					</div>
 				</div>
 				<div class="card">
@@ -32,7 +34,9 @@
 					</div>
 					<div class="paragraph">
 						<H3 heading={'AA Hospitality'} />
-						<P paragraph={'Lorem ipsum dolor sitamet, consectetur.'} />
+						<P
+							paragraph={'We are honored to have received the AA Hospitality award, a symbol of excellence in the industry. With meticulous attention to detail and a passion for delivering impeccable service, we strive to create unforgettable dining experiences for our guests. Visit us and savor the finest flavors, complemented by an ambiance that reflects our commitment to hospitality.'}
+						/>
 					</div>
 				</div>
 				<div class="card">
@@ -41,7 +45,9 @@
 					</div>
 					<div class="paragraph">
 						<H3 heading={'Outstanding Chef'} />
-						<P paragraph={'Lorem ipsum dolor sitamet, consectetur.'} />
+						<P
+							paragraph={' Our chef has been recognized as an Outstanding Chef, an accolade that acknowledges their exceptional culinary skills and visionary approach to gastronomy. With their expertise and creativity, they craft extraordinary dishes that showcase the finest ingredients and innovative techniques. Join us for a dining experience curated by an extraordinary talent that will redefine your perception of food.'}
+						/>
 					</div>
 				</div>
 				<div class="card">
@@ -50,7 +56,9 @@
 					</div>
 					<div class="paragraph">
 						<H3 heading={'Bib Gourmond'} />
-						<P paragraph={'Lorem ipsum dolor sitamet, consectetur.'} />
+						<P
+							paragraph={'Our restaurant is proud to have been awarded the prestigious Bib Gourmand recognition. This esteemed accolade is a testament to our commitment to providing exceptional dining experiences at an affordable price. Come and indulge in our culinary delights, where quality and value go hand in hand.'}
+						/>
 					</div>
 				</div>
 			</div>
@@ -66,23 +74,19 @@
 <style>
 	.badges {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-		gap: 8rem;
+		grid-template-columns: 1fr;
 	}
 	.laurel {
 		padding: 8rem 2rem;
 	}
 	.award {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	}
 
 	.card {
-		width: 100%;
-		display: grid;
-		grid-template-columns: 0.2fr 1fr;
-		align-items: center;
-		gap: 1rem;
+		display: flex;
+		flex-direction: column;
 	}
 	.image-container img {
 		object-fit: contain;

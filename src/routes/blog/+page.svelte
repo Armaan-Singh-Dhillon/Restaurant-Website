@@ -4,12 +4,10 @@
 	import H4 from './../../stylingComponents/H4.svelte';
 	import P from '../../stylingComponents/P.svelte';
 	import { onMount } from 'svelte';
-  import Carousel from '../../components/Carousel.svelte';
 	import isLoading from '../../stores/globalLoader.js';
 	let data = [];
 	isLoading.set(true);
 	onMount(async () => {
-		
 		blogStore.subscribe((value) => {
 			data = value;
 		});
@@ -23,7 +21,6 @@
 	<div class="image-container">
 		<H2 heading={'Welcome To Our Blog'} />
 	</div>
-
 
 	<div class="container">
 		{#each data as item}

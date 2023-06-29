@@ -1,16 +1,36 @@
 <script>
+	import { showLoginModal } from './../stores/loginModal.js';
+	import InnerH3 from './../stylingComponents/inner/innerH3.svelte';
 	import Button from './../stylingComponents/Button.svelte';
 	import fadeScale from '../stylingComponents/fadescale';
-	import search from '../lib/images/logos/search.svg';
+	import user from '../lib/images/logos/user.svg';
 	import cross from '../lib/images/logos/cross.svg';
 	import bars from '../lib/images/logos/bars.svg';
+	import search from '../lib/images/logos/search.svg';
 	import cart from '../lib/images/logos/cart.svg';
 	import { slide } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
-	import { backInOut, linear } from 'svelte/easing';
+	import { linear } from 'svelte/easing';
+	import userFire from '../stores/user.js';
+	import { onMount } from 'svelte';
+	import { getAuth, signOut } from 'firebase/auth';
+
 	let show = false;
 	let visibility = false;
 	let sideVisibility = false;
+	let loggedin = false;
+	const auth = getAuth();
+
+	const modalChanger = () => {
+		showLoginModal.set(true);
+	};
+
+	onMount(() => {
+		userFire.subscribe((value) => {
+			loggedin = value;
+		});
+	});
+
 	let options = { duration: 500, easing: linear };
 	const stateChanger = () => {
 		show = !show;
@@ -20,6 +40,13 @@
 	};
 	const sidevisibilitychanger = () => {
 		sideVisibility = !sideVisibility;
+	};
+	const logout = async () => {
+		try {
+			await signOut(auth);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 </script>
 
@@ -139,21 +166,33 @@
 			<div class="st-containers">
 				<img src={search} alt="" srcset="" />
 			</div>
-			<div class="st-containers">
-				<img src={cart} alt="" srcset="" />
-			</div>
+
+			{#if loggedin}
+				<div class="login" on:click={logout}>Logout</div>
+			{/if}
+
 			<div class="st-containers bars">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<img src={bars} alt="" srcset="" on:click={stateChanger} />
 			</div>
 		</div>
-		<div class="button">
-			<Button text={'Book Table'} />
+		<div class="st-containers">
+			{#if loggedin}
+				<img src={user} alt="" srcset="" />
+			{:else}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<div class="login" on:click={modalChanger}>Login</div>
+			{/if}
 		</div>
 	</div>
 </div>
 
 <style>
+	.login {
+		font-size: calc(0.25em + 1vw);
+		font-family: 'Open Sans', sans-serif;
+		cursor: pointer;
+	}
 	a {
 		text-decoration: none;
 		color: white;
@@ -262,14 +301,13 @@
 		justify-content: space-evenly;
 		align-items: center;
 	}
-	.button {
-		flex: 1;
-	}
+
 	.bars {
 		display: none;
 	}
 	.section-3 {
 		flex: 0.3;
+
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -278,9 +316,6 @@
 	@media (max-width: 1000px) {
 		.section-3 {
 			flex: 0.1;
-		}
-		.button {
-			display: none;
 		}
 	}
 	@media (max-width: 600px) {

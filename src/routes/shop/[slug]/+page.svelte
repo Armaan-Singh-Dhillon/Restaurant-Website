@@ -11,31 +11,64 @@
 	import cook from '../../../lib/images/logos/cook.svg';
 	import sale from '../../../lib/images/logos/discount.svg';
 	import random from '../../../lib/images/random.jpg';
-	import { doc, getDoc } from 'firebase/firestore';
+	import { doc, getDoc, updateDoc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 	import db from '../../../firebaseConfig.js';
 	import isLoading from '../../../stores/globalLoader.js';
+	import { getAuth } from 'firebase/auth';
+	import userStore from '../../../stores/user';
+	import { showLoginModal } from '../../../stores/loginModal';
 
 	let yes = false;
 	export let data;
 	isLoading.set(true);
 	let notAvailable = [];
 	let dishData = {};
+	let userData = {};
+	let comment = '';
+	let comments = [];
 
+	const currentDate = new Date();
+	const year = currentDate.getFullYear();
+	const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+	const day = String(currentDate.getDate()).padStart(2, '0');
+	const formattedDate = `${year}-${month}-${day}`;
+	$: console.log($userStore);
+
+	const submitHandler = async (dishid) => {
+		if ($userStore) {
+			userData = $userStore;
+			comments = [
+				...comments,
+				{
+					id: userData.id,
+					name: userData.name,
+					review: comment,
+					email: userData.email,
+					date: formattedDate
+				}
+			];
+			const docRef = doc(db, 'dishes', dishid);
+			await updateDoc(docRef, {
+				'reviews.customerReviews': comments,
+				'reviews.totalReviews': comments.length
+			});
+		} else {
+			console.log('no user');
+
+			showLoginModal.set(true);
+		}
+	};
 	onMount(async () => {
 		const docRef = doc(db, 'dishes', data.slug);
 		const docSnap = await getDoc(docRef);
 		dishData = { id: docSnap.id, ...docSnap.data() };
+
+		comments = dishData.reviews.customerReviews;
 		setTimeout(() => {
 			isLoading.set(false);
 		}, 1000);
 	});
-
-	let user = {
-		name: 'Tiago Vilas Boas',
-		phone: '11 972393003',
-		email: 'tcarvalhovb@gmail.com'
-	};
 </script>
 
 {#if $isLoading}
@@ -192,15 +225,6 @@
 								<div class="quote-auth"><P paragraph={item.date} /></div>
 								<div class="quote-auth">-{item.name}</div>
 							</div>
-							<div class="person-container">
-								<img
-									src={`https://source.unsplash.com/900x900/?potrait?img=${Math.floor(
-										Math.random() * 100
-									)}`}
-									alt=""
-									srcset=""
-								/>
-							</div>
 						</div>
 					{/each}
 				</Carousel>
@@ -238,19 +262,13 @@
 		<div class="addreview">
 			<H2 heading={'Add Your Reviews'} />
 			<form class="content">
-				<label>
-					<InnerH3 heading={'Name'} />
-				</label>
+				<label><InnerH3 heading={'Comment'} /></label>
 				<div class="search">
-					<input type="text" bind:value={user.name} />
+					<textarea type="text" bind:value={comment} />
 				</div>
-				<label><InnerH3 heading={'Email'} /></label>
-				<div class="search">
-					<input type="text" bind:value={user.email} />
-				</div>
-				<label><InnerH3 heading={'Mobile'} /></label>
-				<div class="search">
-					<input type="text" bind:value={user.phone} />
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<div on:click={() => submitHandler(dishData.id)}>
+					<Button text={'Submit'} />
 				</div>
 			</form>
 		</div>
@@ -258,7 +276,8 @@
 {/if}
 
 <style>
-	input[type='text'] {
+	textarea {
+		resize: none;
 		width: 100%;
 		padding: 1rem;
 		background-color: #000;

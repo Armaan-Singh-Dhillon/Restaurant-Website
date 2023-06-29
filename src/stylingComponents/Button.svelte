@@ -1,24 +1,26 @@
 <script>
-	export let text=''
+	export let text = '';
 </script>
 
+<div class="heading">
+	<button class="btn">{text}</button>
+</div>
+
 <style>
-    .btn{
-        
-        background-color: black;
-        border: none;
-        padding: 0.8rem;
-        font-family: 'Cormorant Upright', serif;
-        font-size: calc(0.2em + 1vw);
-        cursor: pointer;
-        color: white;
-        z-index: 2;
-        position: relative;
+	.btn {
+		background-color: black;
+		border: none;
+		padding: 0.8rem;
+		font-family: 'Cormorant Upright', serif;
+		font-size: calc(0.2em + 1vw);
+		cursor: pointer;
+		color: white;
+		z-index: 2;
+		position: relative;
 		border-top: 2px solid #dcca87;
 		border-bottom: 2px solid #dcca87;
-
-    }
-   .btn::before {
+	}
+	.btn::before {
 		content: '';
 		position: absolute;
 		background-color: #dcca87;
@@ -34,8 +36,4 @@
 		right: auto;
 		width: 100%;
 	}
-
 </style>
-<div class="heading">
-    <button class="btn">{text}</button>
-</div>

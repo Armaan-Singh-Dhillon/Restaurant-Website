@@ -1,17 +1,28 @@
 <script>
+	import { haveAccount } from './../stores/haveAccount.js';
 	import Navbar from '../components/Navbar.svelte';
 	import Footer from '../components/Footer.svelte';
 	import scissor from '../lib/images/logos/loaderscicssors.svg';
 	import loader from '../lib/images/logos/loader.svg';
 	import isLoading from '../stores/globalLoader.js';
-	import { getDocs, collection } from 'firebase/firestore';
+	import { getDocs, collection, getDoc, doc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 	import db from '../firebaseConfig.js';
 	import blogStore from '../stores/blogStore.js';
 	import dishStore from '../stores/dishes.js';
 	import BackToTop from '../components/backToTop.svelte';
+	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	import setUser from '../stores/user.js';
+	import Modal from '../components/modal.svelte';
+	import H1 from '../stylingComponents/H1.svelte';
+	import Button from '../stylingComponents/Button.svelte';
+	import Register from '../components/register.svelte';
+	import Login from '../components/login.svelte';
+	import { showLoginModal } from '../stores/loginModal.js';
 
-	isLoading.set(false);
+	isLoading.set(true);
+
+	const auth = getAuth();
 
 	onMount(async () => {
 		let blogData = [];
@@ -21,16 +32,25 @@
 			blogData = [...blogData, { id: doc.id, ...doc.data() }];
 		});
 		blogStore.set(blogData);
-
 		const querySnapshot2 = await getDocs(collection(db, 'dishes'));
 		querySnapshot2.forEach((doc) => {
 			productData = [...productData, { id: doc.id, show: false, ...doc.data() }];
 		});
 		dishStore.set(productData);
 
-		setTimeout(() => {
-			isLoading.set(false);
-		}, 1000);
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				const res = await getDoc(doc(db, 'user', user.uid));
+
+				setUser.set({ ...res.data(), id: user.uid });
+			} else {
+				setUser.set(false);
+			}
+
+			setTimeout(() => {
+				isLoading.set(false);
+			}, 1000);
+		});
 	});
 </script>
 
@@ -46,6 +66,16 @@
 
 	<div class={`container ${$isLoading ? 'none' : ''}`}>
 		<Navbar />
+
+		{#if $showLoginModal}
+			<Modal>
+				{#if $haveAccount}
+					<Login />
+				{:else}
+					<Register />
+				{/if}
+			</Modal>
+		{/if}
 
 		<div class="main">
 			<slot />

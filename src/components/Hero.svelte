@@ -156,6 +156,9 @@
 		z-index: 1;
 		position: relative;
 	}
+	.image img {
+		object-fit: cover;
+	}
 
 	.right-control,
 	.left-control {

@@ -3,30 +3,57 @@
 	import Sidebar from './../../../components/Sidebar.svelte';
 	import InnerH1 from './../../../stylingComponents/inner/innerH1.svelte';
 	import header from '../../../lib/images/background/blog-inner.avif';
-	import user from '../../../lib/images/logos/user.svg';
 	import calendar from '../../../lib/images/logos/calendar.svg';
 	import P from '../../../stylingComponents/P.svelte';
 	import quote from '../../../lib/images/logos/quote.svg';
 	import hex from '../../../lib/images/logos/hex.svg';
-	import { doc, getDoc } from 'firebase/firestore';
+	import { doc, getDoc, updateDoc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 	import db from '../../../firebaseConfig.js';
 	import isLoading from '../../../stores/globalLoader.js';
+	import H2 from '../../../stylingComponents/H2.svelte';
+	import InnerH3 from '../../../stylingComponents/inner/innerH3.svelte';
+	import Button from '../../../stylingComponents/Button.svelte';
+	import { showLoginModal } from '../../../stores/loginModal';
+	import { getAuth } from 'firebase/auth';
+	import userStore from '../../../stores/user';
+	import H4 from '../../../stylingComponents/H4.svelte';
 
 	export let data;
+
 	let blogdata = {};
+	let comments = [];
 	isLoading.set(true);
+	let comment = '';
+	let userData = {};
+	const submitHandler = async (blogid) => {
+		if ($userStore) {
+			userData = $userStore;
+			comments = [
+				...comments,
+				{ id: userData.id, name: userData.name, review: comment, email: userData.email }
+			];
+			const docRef = doc(db, 'Blog', blogid);
+			await updateDoc(docRef, { comments: comments });
+		} else {
+			console.log('no user');
+
+			showLoginModal.set(true);
+		}
+	};
 	onMount(async () => {
 		const docRef = doc(db, 'Blog', data.slug);
 		const docSnap = await getDoc(docRef);
 		blogdata = { id: docSnap.id, ...docSnap.data() };
-		setTimeout(() => {
-			isLoading.set(false);
-		}, 2000);
+		userStore.subscribe((value) => {
+			userData = value;
+		});
+		comments = [...blogdata.comments];
+		isLoading.set(false);
 	});
 </script>
 
-{#if !blogdata.id}
+{#if $isLoading}
 	<H1 heading={'Loading'} />
 {:else}
 	<div class="header">
@@ -43,7 +70,7 @@
 			<div class="nameline">
 				<div class="nameline-element">
 					<div class="inner-container">
-						<img src={user} alt="" />
+						<!-- <img src={user} alt="" /> -->
 					</div>
 
 					{blogdata.writer.Postedby}
@@ -86,7 +113,7 @@
 				</div>
 			</div>
 			<div class="video-container">
-				<video autoplay loop controls>
+				<video loop controls>
 					<source src={blogdata.video} type="video/mp4" />
 					<track kind="captions" src="" label="English" srclang="en" default />
 					Your browser does not support the video tag.
@@ -151,9 +178,70 @@
 			<Sidebar />
 		</div>
 	</div>
+	{#if comments.length != 0}
+		<div>
+			<H4 heading={'Comments'} />
+			{#each comments as item}
+				<div class="comment">
+					<div>
+						<InnerH3 heading={item.name} />
+					</div>
+					<P paragraph={item.review} />
+				</div>
+			{/each}
+		</div>
+	{/if}
+
+	<div class="addreview">
+		<H2 heading={'Add Your Reviews'} />
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<form class="content">
+			<label><InnerH3 heading={'Comment'} /></label>
+			<div class="search">
+				<textarea rows="4" cols="50" bind:value={comment} />
+			</div>
+		</form>
+	</div>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<div on:click={() => submitHandler(blogdata.id)}>
+		<Button text={'submit'} />
+	</div>
 {/if}
 
 <style>
+	.addreview {
+		width: 50%;
+	}
+
+	.search {
+		position: relative;
+	}
+	.search::before {
+		content: '';
+		position: absolute;
+		top: 98%;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #dcca87;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: all 0.5s ease-in-out;
+	}
+	.search:hover::before {
+		transform: scaleX(1);
+	}
+
+	textarea {
+		resize: none;
+		width: 100%;
+		padding: 1rem;
+		background-color: #000;
+		border: 1px solid #aaa;
+		color: #aaa;
+		font-size: calc(0.5em + 1vw);
+	}
+
 	.video-container video {
 		width: 100%;
 	}
@@ -239,7 +327,6 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 1rem;
-		padding: 0 4rem;
 		background-color: #000;
 		margin: 8rem 0;
 	}

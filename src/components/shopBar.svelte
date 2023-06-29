@@ -46,19 +46,6 @@
 			<div class="tags">High Protein</div>
 		</div>
 	</div>
-	<div class="section">
-		<Carousel autoplay="2000" perPage="1" duration="600">
-			{#each data as item}
-				<div class="image-container">
-					<img src={`src/lib/images/menu/slider/${item.image}`} alt="" srcset="" />
-					<div class="info">
-						<H3 heading={item.name} />
-						<InnerH3 heading={`Price :$${item.price}`} />
-					</div>
-				</div>
-			{/each}
-		</Carousel>
-	</div>
 </div>
 
 <style>
@@ -67,9 +54,7 @@
 		--progress-bg: #dcca87;
 		--thumb-bg: #dcca87;
 	}
-	.image-container img{
-        height: 25vw;
-    }
+
 	.tags-container {
 		display: flex;
 		flex-wrap: wrap;

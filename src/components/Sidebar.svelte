@@ -5,9 +5,13 @@
 	import search from '../lib/images/logos/search.svg';
 	import blogStore from '../stores/blogStore.js';
 	import { onMount } from 'svelte';
-
+	import P from '../stylingComponents/P.svelte';
+	import { goto } from '$app/navigation';
 
 	let data = [];
+	const navigatorHandle = (id) => {
+		goto('/blog');
+	};
 	onMount(() => {
 		blogStore.subscribe((value) => {
 			data = value;
@@ -45,42 +49,26 @@
 				</div>
 			</div>
 			<div class="title-tags">
-				<InnerH3 heading={'Popular Tags'} />
-				<div class="popular-tags">
-					<div class="category-tags-single">
-						<button class="search-tags"> Baking </button>
+				<InnerH3 heading={'Amazing Posts'} />
+				{#each data.slice(0, 3) as item}
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<div class="amazing-post" on:click={() => navigatorHandle(item.id)}>
+						<div class="image-container">
+							<img src={item.image1} alt="" srcset="" />
+						</div>
+						<H4 heading={item.name} />
+						<P paragraph={item.intro} />
 					</div>
-					<div class="category-tags-single">
-						<button class="search-tags"> Cooking </button>
-					</div>
-					<div class="category-tags-single">
-						<button class="search-tags"> Grilling </button>
-					</div>
-				</div>
-			</div>
-			<div class="title-tags">
-				<InnerH3 heading={'Popular Tags'} />
-				<div class="popular-tags">
-					<div class="category-tags-single">
-						<button class="search-tags"> Baking </button>
-					</div>
-					<div class="category-tags-single">
-						<button class="search-tags"> Cooking </button>
-					</div>
-					<div class="category-tags-single">
-						<button class="search-tags"> Grilling </button>
-					</div>
-				</div>
-			</div>
-			<div class="carousel">
-		
+				{/each}
 			</div>
 		</div>
 	</div>
 </div>
 
 <style>
-	
+	.amazing-post img {
+		width: 100%;
+	}
 	.search-icon {
 		width: 20px;
 	}

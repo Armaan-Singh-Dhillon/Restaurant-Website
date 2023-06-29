@@ -11,13 +11,15 @@
 	import { onMount } from 'svelte';
 	import dishStore from '../../stores/dishes.js';
 	import isLoading from '../../stores/globalLoader.js';
-
-	function showHandle(index) {
-		items[index].show = !items[index].show;
-	}
+	import { paginate, LightPaginationNav } from 'svelte-paginate';
+	import H4 from '../../stylingComponents/H4.svelte';
 	let items = [];
 
 	let localLoading = true;
+	let currentPage = 1;
+	let pageSize = 6;
+	$: paginatedItems = paginate({ items, pageSize, currentPage });
+
 	isLoading.set(true);
 	onMount(() => {
 		dishStore.subscribe((val) => {
@@ -44,25 +46,9 @@
 			<ShopBar />
 		</div>
 
-		{#each items as item, index}
+		{#each paginatedItems as item, index}
 			<div class="item">
-				<div
-					class="image-container"
-					on:mouseenter={() => showHandle(index)}
-					on:mouseleave={() => showHandle(index)}
-				>
-					{#if items[index].show}
-						<div
-							class="btn"
-							transition:fadeScale={{
-								duration: 1000,
-								easing: cubicInOut,
-								baseScale: 0.5
-							}}
-						>
-							Select Options
-						</div>
-					{/if}
+				<div class="image-container">
 					<img src={item.image} alt="" />
 				</div>
 				<a href={`/shop/${item.id}`}>
@@ -74,15 +60,54 @@
 				<div class="star-container">
 					<Star starData={item.reviews.averageRating} />
 				</div>
+				<div class="tag-container">
+					{#each item.tags as item}
+						<div class="tags">{item}</div>
+					{/each}
+				</div>
 				<div class="price">
-					<InnerH3 heading={`Price :$${item.price}`} />
+					<H4 heading={`Price :$${item.price}`} />
 				</div>
 			</div>
 		{/each}
 	</div>
+	<div class="mydiv">
+		<LightPaginationNav
+			totalItems={items.length}
+			{pageSize}
+			{currentPage}
+			limit={1}
+			showStepOptions={true}
+			on:setPage={(e) => (currentPage = e.detail.page)}
+		/>
+	</div>
 {/if}
 
 <style>
+	.tag-container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.tags {
+		background-color: #242424;
+		color: #aaa;
+		font-family: 'Noto Serif Georgian', serif;
+		font-size: calc(0.2em + 1vw);
+		padding: 5px;
+		margin: 0.2rem 0.5rem;
+		transition: all 0.5s ease-in-out;
+	}
+	.tags:hover {
+		color: #dcca87;
+		cursor: pointer;
+		scale: 1.1;
+	}
+	.mydiv {
+		position: absolute;
+		display: flex;
+		left: 50%;
+		bottom: 0;
+	}
 	a {
 		text-decoration: none;
 	}
@@ -150,11 +175,12 @@
 	}
 
 	.sidebar {
-		grid-row: span 3 / auto;
 		grid-column: span 2 / auto;
+		grid-row: span 2 / auto;
 	}
 	.item {
 		grid-column: span 2 / auto;
+		max-height: 450px;
 		background-color: rgb(0, 0, 0);
 		display: flex;
 		flex-direction: column;

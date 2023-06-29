@@ -178,7 +178,7 @@
 			<Sidebar />
 		</div>
 	</div>
-	{#if comments.length != 0}
+	{#if comments.length !== 0}
 		<div>
 			<H4 heading={'Comments'} />
 			{#each comments as item}
@@ -210,7 +210,7 @@
 
 <style>
 	.addreview {
-		width: 50%;
+		width: 80%;
 	}
 
 	.search {

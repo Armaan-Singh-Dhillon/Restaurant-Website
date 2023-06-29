@@ -10,7 +10,7 @@
 <style>
 	.paragraph {
 		color: #aaa;
-		font-size: calc(0.1em + 1vw);
+		font-size: calc(0.6rem + 0.6vw);
 		font-family: 'Open Sans', sans-serif;
 		margin: 1rem 0;
 	}

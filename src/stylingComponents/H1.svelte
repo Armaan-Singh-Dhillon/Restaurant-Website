@@ -1,17 +1,18 @@
 <script>
-	export let heading=''
+	export let heading = '';
 </script>
 
-<style>
-    .heading{
-        font-size: calc(4em + 1vw);
-        font-family: 'Cormorant Upright', serif;
-        font-weight: 600;
-        color: #dcca87;
-        margin: 2rem 0;
-    }
-
-</style>
 <div class="heading">
-    {heading}
+	{heading}
 </div>
+
+<style>
+	.heading {
+		font-size: calc(1rem + 2.5vw);
+
+		font-family: 'Cormorant Upright', serif;
+		font-weight: 600;
+		color: #dcca87;
+		margin: 2rem 0;
+	}
+</style>

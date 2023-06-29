@@ -57,7 +57,7 @@
 							<img src={item.image1} alt="" srcset="" />
 						</div>
 						<H4 heading={item.name} />
-						<P paragraph={item.intro} />
+						<P paragraph={item.mainTitle} />
 					</div>
 				{/each}
 			</div>

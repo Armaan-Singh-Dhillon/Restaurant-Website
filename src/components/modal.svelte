@@ -2,6 +2,7 @@
 	import { showLoginModal } from '../stores/loginModal';
 	import P from '../stylingComponents/P.svelte';
 	let dialog; // HTMLDialogElement
+	import fadeScale from '../stylingComponents/fadescale';
 
 	$: {
 		if (dialog && $showLoginModal) {
@@ -17,6 +18,7 @@
 	on:click|self|capture={() => {
 		dialog.close();
 	}}
+	transition:fadeScale
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>
@@ -32,9 +34,7 @@
 	dialog {
 		width: 50%;
 		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		margin: auto;
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;

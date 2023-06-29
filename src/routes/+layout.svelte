@@ -19,7 +19,7 @@
 	import Register from '../components/register.svelte';
 	import Login from '../components/login.svelte';
 	import { showLoginModal } from '../stores/loginModal.js';
-
+	import fadeScale from '../stylingComponents/fadescale.js';
 	isLoading.set(true);
 
 	const auth = getAuth();
@@ -39,6 +39,8 @@
 		dishStore.set(productData);
 
 		onAuthStateChanged(auth, async (user) => {
+			isLoading.set(true);
+
 			if (user) {
 				const res = await getDoc(doc(db, 'user', user.uid));
 
@@ -56,7 +58,7 @@
 
 <div class="main">
 	{#if $isLoading}
-		<div class="center">
+		<div class="center" transition:fadeScale>
 			<div class="loader-container">
 				<img src={scissor} class="scissor" alt="" />
 				<img src={loader} class="loader" alt="" />

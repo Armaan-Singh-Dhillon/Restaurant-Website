@@ -96,7 +96,9 @@
 						<div class="card">
 							<div class={`${(i + 1) % 2 != 0 ? 'stickerleft' : 'stickerright'}`}>
 								<InnerH3 heading={option.title} />
-								<P paragraph={option.description} />
+								<div class="para">
+									{option.description}
+								</div>
 							</div>
 							<img
 								src={`../../src/lib/images/timeline/${option.image}`}
@@ -117,7 +119,9 @@
 			{#each timelineData as option, i}
 				<TimelineItem>
 					<TimelineOppositeContent slot="opposite-content">
-						<P paragraph={option.description} />
+						<div class="para">
+							{option.description}
+						</div>
 					</TimelineOppositeContent>
 
 					<TimelineSeparator>
@@ -137,6 +141,10 @@
 <svelte:window on:resize={handleResize} />
 
 <style>
+	.para {
+		font-size: calc(0.4em + 1vw);
+		color: #aaa;
+	}
 	.heading {
 		font-family: 'Noto Serif Georgian', serif;
 		font-weight: 300;

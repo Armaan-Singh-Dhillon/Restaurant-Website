@@ -89,9 +89,6 @@
 					<div class="tags">
 						<a href="/blog"> Blog </a>
 					</div>
-					<div class="tags">
-						<a href="/booking">Booking</a>
-					</div>
 				</div>
 			{/if}
 		</div>
@@ -103,9 +100,6 @@
 		</div>
 		<div class="tags">
 			<a href="/blog"> Blog </a>
-		</div>
-		<div class="tags">
-			<a href="/booking">Booking</a>
 		</div>
 	</div>
 	{#if show}
@@ -140,9 +134,6 @@
 						<div class="tags">
 							<a href="/blog"> Blog </a>
 						</div>
-						<div class="tags">
-							<a href="/booking">Booking</a>
-						</div>
 					</div>
 				{/if}
 			</div>
@@ -154,9 +145,6 @@
 			</div>
 			<div class="tags">
 				<a href="/blog"> Blog </a>
-			</div>
-			<div class="tags">
-				<a href="/booking">Booking</a>
 			</div>
 		</div>
 	{/if}

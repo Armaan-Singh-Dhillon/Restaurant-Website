@@ -69,8 +69,9 @@
 	}
 	.container {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
-		gap: 2rem;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 570px));
+		justify-content: space-evenly;
+		gap: 1rem;
 		margin: 4rem 0;
 	}
 	.heading {

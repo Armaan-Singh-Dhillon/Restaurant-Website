@@ -58,14 +58,16 @@
 	.tags-container {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: start;
+		justify-content: space-between;
 		align-items: flex-start;
 	}
 	.tags {
 		color: #aaa;
-		font-size: 20px;
-		margin: 10px 10px;
-		padding: 8px;
+		font-family: 'Noto Serif Georgian', serif;
+		font-size: calc(0.4em + 1vw);
+		padding: 5px;
+		margin: 0.2rem 0.5rem;
+
 		background-color: #242424;
 		transition: all 0.5s ease-in-out;
 	}
@@ -90,7 +92,7 @@
 		font-weight: 300;
 		color: white;
 		margin: 1rem 0;
-		font-size: 22px;
+		font-size: calc(1em + 1vw);
 	}
 	.container {
 		padding: 1rem;

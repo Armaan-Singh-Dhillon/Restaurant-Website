@@ -76,12 +76,11 @@
 		display: grid;
 		grid-template-columns: 1fr;
 	}
-	.laurel {
-		padding: 8rem 2rem;
-	}
+
 	.award {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		justify-content: center;
 	}
 
 	.card {

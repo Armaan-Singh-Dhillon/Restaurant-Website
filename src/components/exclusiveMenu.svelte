@@ -4,8 +4,7 @@
 	import H3 from './../stylingComponents/H3.svelte';
 	import InnerH3 from '../stylingComponents/inner/innerH3.svelte';
 	import data from '../localData/exclusiveMenu.js';
-
-
+	import P from '../stylingComponents/P.svelte';
 </script>
 
 <div class="header">
@@ -21,9 +20,8 @@
 			</div>
 			<div class="info">
 				<InnerH3 heading={item.title} />
-				<div class="paragraph">
-					{item.subTitle}
-				</div>
+
+				<P paragraph={item.subTitle} />
 				<H3 heading={`$${item.price}`} />
 			</div>
 		</div>
@@ -31,21 +29,15 @@
 </div>
 
 <style>
-    .header{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-	.paragraph {
-		color: #aaa;
-		font-size: calc(0.1em + 1vw);
-		font-family: 'Poppins', sans-serif;
-		margin: 8px 0;
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
+
 	.container {
 		display: grid;
-        padding: 0 8rem;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		row-gap: 5rem;
 		column-gap: 8rem;
 	}

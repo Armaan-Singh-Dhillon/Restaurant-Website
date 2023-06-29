@@ -25,7 +25,6 @@
 	$: pips = controller ? controller.innerElements : [];
 	$: currentPerPage = controller ? controller.perPage : perPage;
 
-
 	onMount(() => {
 		controller = new Siema({
 			selector: siema,
@@ -118,15 +117,13 @@
 			<slot name="right-control" />
 		</button>
 	{/if}
-
 </div>
 
 <style>
 	.carousel {
 		position: relative;
 		width: 100%;
-		justify-content: center;
-		align-items: center;
+		height: 100%;
 	}
 
 	button {
@@ -150,5 +147,4 @@
 	.right {
 		right: 2vw;
 	}
-
 </style>

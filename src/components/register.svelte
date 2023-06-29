@@ -29,7 +29,12 @@
 				userData.email,
 				userData.password
 			);
-			await setDoc(doc(db, 'user', user.uid), userData);
+			await setDoc(doc(db, 'user', user.uid), {
+				id: userData.id,
+				email: userData.email,
+				address: userData.address,
+				phoneNumber: userData.phoneNumber
+			});
 			showLoginModal.set(false);
 			goto('/user');
 		} catch (error) {
@@ -62,7 +67,7 @@
 			<InnerH3 heading={'Password:'} />
 
 			<div class="text-box">
-				<input type="text" bind:value={userData.password} />
+				<input type="password" bind:value={userData.password} />
 			</div>
 		</label>
 		<label>

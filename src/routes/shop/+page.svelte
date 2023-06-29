@@ -71,17 +71,15 @@
 			</div>
 		{/each}
 	</div>
-	<div class="mydiv">
-		<LightPaginationNav
-			totalItems={items.length}
-			{pageSize}
-			{currentPage}
-			limit={1}
-			showStepOptions={true}
-			on:setPage={(e) => (currentPage = e.detail.page)}
-		/>
-	</div>
 {/if}
+<LightPaginationNav
+	totalItems={items.length}
+	{pageSize}
+	{currentPage}
+	limit={1}
+	showStepOptions={true}
+	on:setPage={(e) => (currentPage = e.detail.page)}
+/>
 
 <style>
 	.tag-container {
@@ -92,7 +90,7 @@
 		background-color: #242424;
 		color: #aaa;
 		font-family: 'Noto Serif Georgian', serif;
-		font-size: calc(0.2em + 1vw);
+		font-size: calc(0.6em + 0.6vw);
 		padding: 5px;
 		margin: 0.2rem 0.5rem;
 		transition: all 0.5s ease-in-out;

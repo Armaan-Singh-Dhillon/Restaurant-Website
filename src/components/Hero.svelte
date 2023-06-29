@@ -27,16 +27,21 @@
 		</div>
 
 		<div class="image-container">
-			<div class="white-rect" />
-
 			<div class="image">
 				<Carousel autoplay="5000" perPage="1" dots="false" controls="false" duration="600">
-					<img src={cusine1} class="carousel" alt="" srcset="" />
-					<img src={cusine2} class="carousel" alt="" srcset="" />
+					<div class="carousel-container">
+						<img src={cusine1} alt="" srcset="" />
+					</div>
+					<div class="carousel-container">
+						<img src={cusine2} alt="" srcset="" />
+					</div>
+					<div class="carousel-container">
+						<img src={cusine3} alt="" srcset="" />
+					</div>
 
-					<img src={cusine3} class="carousel" alt="" srcset="" />
-
-					<img src={cusine4} class="carousel" alt="" srcset="" />
+					<div class="carousel-container">
+						<img src={cusine4} alt="" srcset="" />
+					</div>
 
 					<span class="left-control" slot="left-control"
 						><div class="buttons">
@@ -62,9 +67,8 @@
 </div>
 
 <style>
-	.carousel {
-		height: 45vw;
-		object-fit: cover;
+	.carousel-container {
+		height: 750px;
 	}
 	.left {
 		transform: rotate(180deg);
@@ -124,7 +128,7 @@
 		color: white;
 
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 2rem;
 	}
 	img {
@@ -135,33 +139,53 @@
 
 	.modifier1 {
 		background-color: #dcca87;
+		position: absolute;
+		width: 70%;
+		height: 60%;
+		left: 0;
+		bottom: 0;
 		color: #dcca87;
-		grid-area: 1/3/-3/-1;
 	}
 	.modifier2 {
 		background-color: #dcca87;
+		position: absolute;
+		width: 70%;
+		height: 60%;
+		right: 0;
 		color: #dcca87;
-		grid-area: 3/1/-1/-3;
 	}
 	.image-container {
-		display: grid;
-		grid-template-columns: 15px 2fr 4fr 2fr 15px;
-
-		grid-template-rows: 20px 2fr 4fr 2fr 20px;
+		height: 800px;
 		position: relative;
 	}
 
 	.image {
-		grid-area: 2/2/-2/-2;
 		z-index: 1;
-		position: relative;
+		width: 95%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 	.image img {
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
 	}
 
 	.right-control,
 	.left-control {
 		color: white;
+	}
+	@media (max-width: 768px) {
+		.image-container {
+			height: 400px;
+		}
+		.image {
+			width: 90%;
+		}
+		.carousel-container {
+			height: 380px;
+		}
 	}
 </style>

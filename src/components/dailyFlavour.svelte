@@ -10,15 +10,51 @@
 	import image5 from '../lib/images/menu/dailyExplosion/5.jpg';
 	import image6 from '../lib/images/menu/dailyExplosion/6.jpg';
 	import Carousel from './Carousel.svelte';
-	import data from '../localData/dailyExplosive.js';
 	let weekday = 'monday';
+	const data = {
+		monday: {
+			name: 'Meatless Madness',
+			content: 'peach puree, ginger ale, splash of lemon juice.',
+			price: 25.16
+		},
+		tuesday: {
+			name: 'Tropical Delight',
+			content: 'mango puree, pineapple juice, coconut milk.',
+			price: 28.5
+		},
+		wednesday: {
+			name: 'Berry Blast',
+			content: 'strawberry puree, blueberry syrup, lemonade.',
+			price: 22.8
+		},
+		thursday: {
+			name: 'Citrus Splash',
+			content: 'orange juice, grapefruit juice, lime slices.',
+			price: 19.99
+		},
+		friday: {
+			name: 'Minty Mojito',
+			content: 'muddled mint leaves, lime juice, soda water.',
+			price: 24.75
+		},
+		saturday: {
+			name: 'Sunset Sangria',
+			content: 'red wine, orange slices, brandy, soda water.',
+			price: 32.4
+		},
+		sunday: {
+			name: 'Creamy Cappuccino',
+			content: 'espresso, steamed milk, frothed milk.',
+			price: 18.6
+		}
+	};
+
 	const handleClick = (e) => {
 		const value = e.target.getAttribute('value');
+		console.log(value);
 		weekday = value;
-
-		
 	};
-	console.log(data)
+	console.log(data);
 </script>
 
 <div class="container">
@@ -50,7 +86,7 @@
 					<div class="text">{data[weekday].content}</div>
 				</div>
 				<div class="price">
-					<InnerH3 heading={data[weekday].price} />
+					<InnerH3 heading={`$${data[weekday].price}`} />
 				</div>
 			</div>
 			<div class="image-container">
@@ -76,7 +112,8 @@
 <style>
 	img {
 		width: 100%;
-		height: 600px;
+		height: 40vw;
+		min-height: 300px;
 		object-fit: cover;
 		animation: scale 1s ease-in;
 	}
@@ -111,7 +148,7 @@
 		font-family: 'Poppins', sans-serif;
 		font-weight: 300;
 		color: #aaa;
-		font-size: 20px;
+		font-size: calc(1em + 1vw);
 		padding: 10px 0;
 		display: flex;
 	}
@@ -146,7 +183,7 @@
 	.two {
 		grid-column: span 8 / auto;
 		font-family: 'Sacramento', cursive;
-		font-size: calc(3.5em + 1vw);
+		font-size: calc(2.5em + 1.5vw);
 		word-spacing: 4px;
 		color: #dcca87;
 	}

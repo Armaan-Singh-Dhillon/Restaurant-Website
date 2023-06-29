@@ -1,16 +1,16 @@
 <script>
-	export let heading=''
+	export let heading = '';
 </script>
 
+<div class="heading">
+	{heading}
+</div>
+
 <style>
-    .heading{
-      font-family: 'Noto Serif Georgian', serif;
+	.heading {
+		font-family: 'Noto Serif Georgian', serif;
 		font-weight: 300;
 		color: white;
-		font-size: calc(3.5em + 1vw);
-    }
-
+		font-size: calc(1.5em + 1.5vw);
+	}
 </style>
-<div class="heading">
-    {heading}
-</div>

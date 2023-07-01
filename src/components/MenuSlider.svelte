@@ -4,14 +4,15 @@
 </script>
 
 <div class="container">
-	<Carousel autoplay="2000"  dots="false" controls="false" duration="600">
+	<Carousel autoplay="2000" controls="false" duration="600">
 		{#each data as item}
 			<img src={`src/lib/images/menu/slider/${item.image}`} alt="" srcset="" />
 		{/each}
 	</Carousel>
 </div>
+
 <style>
-	img{
+	img {
 		height: 40vw;
 	}
 </style>

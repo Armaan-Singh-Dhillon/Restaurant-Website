@@ -51,10 +51,8 @@
 
 	const handleClick = (e) => {
 		const value = e.target.getAttribute('value');
-		console.log(value);
 		weekday = value;
 	};
-	console.log(data);
 </script>
 
 <div class="container">
@@ -90,7 +88,7 @@
 				</div>
 			</div>
 			<div class="image-container">
-				<Carousel autoplay="2000" perPage="1" dots="false" controls="false" duration="600">
+				<Carousel autoplay="2000" perPage="1" controls="false" duration="600">
 					<img src={image1} alt="" />
 					<img src={image2} alt="" />
 					<img src={image3} alt="" />
@@ -100,7 +98,7 @@
 	</div>
 	<div class="five">
 		<div class="image-container">
-			<Carousel autoplay="5000" perPage="1" dots="false" controls="false" duration="600">
+			<Carousel autoplay="5000" perPage="1" controls="false" duration="600">
 				<img src={image4} alt="" />
 				<img src={image5} alt="" />
 				<img src={image6} alt="" />

@@ -28,7 +28,7 @@
 
 		<div class="image-container">
 			<div class="image">
-				<Carousel autoplay="5000" perPage="1" dots="false" controls="false" duration="600">
+				<Carousel autoplay="5000" perPage="1" controls="false" duration="600">
 					<div class="carousel-container">
 						<img src={cusine1} alt="" srcset="" />
 					</div>

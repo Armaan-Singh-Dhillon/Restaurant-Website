@@ -2,16 +2,13 @@
 	import spoon from '../lib/images/logos/spoon-svgrepo-com.svg';
 	import Countup from 'svelte-countup';
 
-	export let initial;
 	export let value;
-	export let duration;
-	export let step;
 	export let description;
 </script>
 
 <div class="heading">
 	<div class="title">
-		<Countup {initial} {value} {duration} {step} />+
+		<Countup {value} />+
 	</div>
 
 	<div class="image-container">

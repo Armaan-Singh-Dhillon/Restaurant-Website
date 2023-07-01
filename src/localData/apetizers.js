@@ -37,7 +37,7 @@ const appetizers = [
     {
         item: 'Potato Skins',
         price: 8,
-        text: 'Crispy potato skins filled with bacon, cheese, and sour cream'
+        text: 'Crispy  skins filled with bacon, cheese, and sour cream'
     }
 ];
 

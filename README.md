@@ -1,38 +1,79 @@
-# create-svelte
+# Wine And Dine
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Welcome to Wine And Dine, a personal project crafted with Firebase and Svelte Kit to bring you an immersive and delightful restaurant experience. Wine And Dine combines the power of Firebase's robust backend infrastructure with the lightweight and intuitive Svelte Kit framework to create a seamless and dynamic web application.
 
-## Creating a project
+## Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+**Client:** Svelte-Kit
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+**Server:** Firebase
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Run Locally
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Clone the project
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+  git clone git@github.com:Armaan-Singh-Dhillon/Restaurant-Website.git
 ```
 
-## Building
-
-To create a production version of your app:
+Go to the project directory and install the dependencies
 
 ```bash
-npm run build
+  npm install
 ```
 
-You can preview the production build with `npm run preview`.
+Run the development server
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+  npm run dev
+```
+
+## Project Deployed On Vercel
+
+To access this project
+
+[Click Here To See The Deployed Project](https://restaurant-website-6k7g6oil6-armaan-singh-dhillon.vercel.app)
+
+## Screenshots
+
+![Wine and Dine](screenshots/hero.PNG)
+![Wine and Dine](screenshots/Login.PNG)
+![Wine and Dine](screenshots/chefsword.PNG)
+![Wine and Dine](screenshots/Laurels.PNG)
+![Wine and Dine](screenshots/Menu.PNG)
+![Wine and Dine](screenshots/apetizers.PNG)
+![Wine and Dine](screenshots/backeffectmenu.PNG)
+![Wine and Dine](screenshots/BlogSection.PNG)
+![Wine and Dine](screenshots/blog-inner.PNG)
+![Wine and Dine](screenshots/blog-inner-2.PNG)
+![Wine and Dine](screenshots/faq.PNG)
+![Wine and Dine](screenshots/shop.PNG)
+![Wine and Dine](screenshots/shop-inner.PNG)
+![Wine and Dine](screenshots/shop-inner-2.PNG)
+![Wine and Dine](screenshots/footer.PNG)## Color Reference
+
+| Color            | Hex                                                              |
+| ---------------- | ---------------------------------------------------------------- |
+| Background Color | ![#000](https://via.placeholder.com/10/000?text=+) #000          |
+| Borders          | ![#dcc87a](https://via.placeholder.com/10/dcc87a?text=+) #dcc87a |
+| Text Color       | ![#fff](https://via.placeholder.com/10/fff?text=+) #fff          |
+
+## Features
+
+- Built using Svelte and Firebase technologies
+- Utilizes Svelte routing animation for smooth transitions between pages
+- Optimized build using Vite for improved performance and fast loading times
+- Firebase Storage bucket for storing and serving images and other media files
+- Firestore SDK for real-time data synchronization and efficient data management
+- Firestore Auth for secure user authentication and authorization
+- Svelte transitions for creating visually appealing animations and effects
+- Dynamic routing to handle different page layouts and content based on user interaction
+- Modern UI design with CSS and grids for a visually appealing and user-friendly experience
+
+## Support
+
+For support, email dhillonarmaan2004@mail.com
+
+## Developer
+
+- [@Armaan-Singh-Dhillon](https://github.com/Armaan-Singh-Dhillon)

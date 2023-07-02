@@ -11,9 +11,15 @@
 	} from 'svelte-vertical-timeline';
 	import H2 from '../stylingComponents/H2.svelte';
 	import hex from '../lib/images/logos/hex.svg';
-	import P from '../stylingComponents/P.svelte';
 	import InnerH1 from '../stylingComponents/inner/innerH1.svelte';
-	import { onMount, onDestroy } from 'svelte';
+	import interior from '../lib/images/timeline/restaurant-interior.jpg';
+	import cusines from '../lib/images/timeline/cusines.jpg';
+	import renovation from '../lib/images/timeline/renovation.jpg';
+	import increaseChef from '../lib/images/timeline/increase-chef.jpg';
+	import michelin from '../lib/images/timeline/michelin.png';
+	import signature from '../lib/images/timeline/signature.jpg';
+	import international from '../lib/images/timeline/international.jpg';
+	import james from '../lib/images/timeline/james.jpg';
 
 	let showComponent = true;
 
@@ -24,41 +30,41 @@
 		{
 			time: '1930',
 			title: 'Restaurant Inauguration',
-			image: 'restaurant-interior.jpg',
+			image: interior,
 			description: 'The luxury restaurant opens its doors for the first time.'
 		},
 		{
 			time: '1940',
 			title: 'Expansion of Cuisines',
-			image: 'cusines.jpg',
+			image: cusines,
 
 			description: 'Introduction of French and Italian cuisines to the menu.'
 		},
 		{
 			time: '1955',
 			title: 'Renovation and Redesign',
-			image: 'renovation.jpg',
+			image: renovation,
 
 			description: 'The restaurant undergoes a major renovation and revamps its interior design.'
 		},
 		{
 			time: '1962',
 			title: 'Increase in Staff',
-			image: 'increase-chef.jpg',
+			image: increaseChef,
 
 			description: "Expansion of the restaurant's team to cater to growing demand."
 		},
 		{
 			time: '1975',
 			title: 'Receiving Michelin Star',
-			image: 'michelin.png',
+			image: michelin,
 
 			description: 'The restaurant is awarded a prestigious Michelin star for culinary excellence.'
 		},
 		{
 			time: '1988',
 			title: 'Launch of Signature Dish',
-			image: 'signature.jpg',
+			image: signature,
 
 			description:
 				'The restaurant introduces its iconic signature dish, becoming a customer favorite.'
@@ -66,14 +72,14 @@
 		{
 			time: '2005',
 			title: 'Expansion to International Locations',
-			image: 'international.jpg',
+			image: international,
 
 			description: 'The restaurant opens branches in major cities around the world.'
 		},
 		{
 			time: '2020',
 			title: 'Receiving James Beard Award',
-			image: 'james.jpg',
+			image: james,
 
 			description: 'The restaurant is honored with a prestigious James Beard Award.'
 		}
@@ -101,7 +107,7 @@
 								</div>
 							</div>
 							<img
-								src={`../../src/lib/images/timeline/${option.image}`}
+								src={option.image}
 								alt=""
 								srcset=""
 								class={`${(i + 1) % 2 == 0 ? 'cardimgleft' : 'cardimgright'}`}

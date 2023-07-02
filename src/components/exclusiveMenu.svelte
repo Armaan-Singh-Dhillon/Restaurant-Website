@@ -16,7 +16,7 @@
 	{#each data as item}
 		<div class="card">
 			<div class="image-container">
-				<img src={`src/lib/images/menu/exclusive/${item.image}`} alt="" />
+				<img src={item.image} alt="" />
 			</div>
 			<div class="info">
 				<InnerH3 heading={item.title} />

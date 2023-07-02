@@ -1,12 +1,7 @@
 <script>
-	import H3 from './../stylingComponents/H3.svelte';
-	import H4 from './../stylingComponents/H4.svelte';
-	import data from '../localData/menuslider.js';
 	import Button from './../stylingComponents/Button.svelte';
 	import search from '../lib/images/logos/search.svg';
 	import Slider from '@bulatdashiev/svelte-slider';
-	import Carousel from './Carousel.svelte';
-	import InnerH3 from '../stylingComponents/inner/innerH3.svelte';
 	let value = [10, 100];
 </script>
 

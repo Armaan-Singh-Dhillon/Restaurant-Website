@@ -36,7 +36,7 @@
 				phoneNumber: userData.phoneNumber
 			});
 			showLoginModal.set(false);
-			goto('/user');
+			
 		} catch (error) {
 			console.log(error);
 		}

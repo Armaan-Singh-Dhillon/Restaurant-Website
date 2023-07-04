@@ -30,7 +30,8 @@
 				userData.password
 			);
 			await setDoc(doc(db, 'user', user.uid), {
-				id: userData.id,
+				id: user.uid,
+                                name:userData.name,
 				email: userData.email,
 				address: userData.address,
 				phoneNumber: userData.phoneNumber
